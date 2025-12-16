@@ -197,10 +197,10 @@
             border: 2px solid var(--primary);
         }
 
-        /* Card Canal */
+        /* Card Canal (Com Imagem) */
         .channel-card {
-            min-width: 150px;
-            height: 90px;
+            min-width: 160px;
+            height: 100px;
             background: #151515;
             border-radius: 10px;
             display: flex;
@@ -209,10 +209,18 @@
             border: 1px solid #333;
             flex-shrink: 0;
             transition: 0.3s;
-            color: #fff;
-            font-weight: 900;
-            font-size: 1.1rem;
+            overflow: hidden; /* Garante que a imagem não vaze */
+            padding: 10px;
         }
+        
+        .channel-card img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* Ajusta a imagem sem distorcer */
+            display: block;
+        }
+
         .channel-card:hover { border-color: var(--primary); background: #1a1a1a; box-shadow: 0 0 15px rgba(229,9,20,0.2); }
 
         /* Setas de Navegação */
@@ -362,16 +370,34 @@
 
         <div class="carousel-container" id="carousel-channels">
             <button class="nav-btn prev-btn" onclick="scrollCarousel('track-channels', -300)">‹</button>
+            
             <div class="carousel-track" id="track-channels">
-                <div class="channel-card"><span style="color:#E50914;">NETFLIX</span></div>
-                <div class="channel-card"><span style="color:#00A8E1;">PRIME VIDEO</span></div>
-                <div class="channel-card"><span style="color:#fff;">HBO MAX</span></div>
-                <div class="channel-card"><span style="color:#F5C518;">TELECINE</span></div>
-                <div class="channel-card"><span style="color:#CC0000;">ESPN</span></div>
-                <div class="channel-card"><span style="color:#003087;">PREMIERE</span></div>
-                <div class="channel-card"><span style="color:#ff00ff;">VIVA</span></div>
-                <div class="channel-card"><span style="color:#00ff00;">GLOBO</span></div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/3517/oQ02Pb.png" alt="Canais Premium">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/678/L4VjGP.png" alt="Esportes">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/3517/oQ02Pb.png" alt="Canais Premium">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/678/L4VjGP.png" alt="Esportes">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/3517/oQ02Pb.png" alt="Canais Premium">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/678/L4VjGP.png" alt="Esportes">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/3517/oQ02Pb.png" alt="Canais Premium">
+                </div>
+                <div class="channel-card">
+                    <img src="https://imagizer.imageshack.com/img922/678/L4VjGP.png" alt="Esportes">
+                </div>
             </div>
+
             <button class="nav-btn next-btn" onclick="scrollCarousel('track-channels', 300)">›</button>
         </div>
     </section>
