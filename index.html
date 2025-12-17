@@ -90,13 +90,13 @@
         
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
 
-        /* --- HERO (WALLPAPER DE FILMES) --- */
+        /* --- HERO (WALLPAPER DE FILMES LOCAL) --- */
         .hero {
             height: 100vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            /* Imagem de Fundo (Wall of Movies) + Overlay Escuro */
+            /* Imagem de Fundo Local "capa hero.jpg" + Overlay Escuro */
             background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1920&auto=format&fit=crop'); 
+                        url('capa hero.jpg'); 
             background-size: cover; background-position: center;
             padding-top: 80px; border-bottom: none;
         }
@@ -222,7 +222,7 @@
 
         /* --- SUPORTE --- */
         .support { text-align: center; padding: 80px 0; background: linear-gradient(to bottom, #000, #0a0a0a); }
-        .support-box { background: #141414; border: 1px solid #333; padding: 50px; border-radius: 12px; max-width: 800px; margin: 0 auto; }
+        .support-box { background: #141414; border: 1px solid #333; max-width: 700px; margin: 0 auto; padding: 50px; border-radius: 12px; }
         .btn-whatsapp-lg {
             background: #25d366; color: white; padding: 18px 40px; border-radius: 50px;
             font-weight: 700; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem;
@@ -257,14 +257,24 @@
         .payment-pill img { height: 22px; background: white; padding: 2px; border-radius: 2px; }
 
         .copyright { font-weight: 700; color: white; font-size: 0.9rem; }
-        .voxo-credit { font-size: 0.8rem; color: #444; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .voxo-credit a { color: #666; font-weight: 800; }
+        .voxo-credit { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .voxo-credit a { color: rgba(255,255,255,0.6); font-weight: bold; }
         .voxo-credit a:hover { color: white; }
+
+        /* --- WHATSAPP FLUTUANTE --- */
+        .whatsapp-float { 
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+            z-index: 999; animation: pulse 2s infinite; transition: 0.3s; border: 2px solid transparent;
+        }
+        .whatsapp-float:hover { background: white; color: #25d366; border-color: white; box-shadow: 0 0 40px rgba(255,255,255,0.8); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 900px) {
+            :root { --section-spacing: 80px; }
             .hero { padding-top: 120px; }
-            .hero h1 { font-size: 2.8rem; }
+            .hero h1 { font-size: 3rem; }
             .nav-container { justify-content: space-between; }
             .nav-menu { display: none; }
             .menu-toggle { display: block; }
@@ -355,8 +365,8 @@
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_46a7b9829517437598f3fd4805a37530mv2-rfog2hllstyily2g9pizzt3qliwq3a50z50dp5d0iq.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_35a6fbc749ff40c5b5ae06f832753f31mv2-rfog2bykntqsoaan6n38kuiz17oit3imyd3gthldk2.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9da5689adac04f94a0438377456ae6damv2-rfog2p4bbi8t6trj1ss0jr7fclvnsuyvo689jd1v4y.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9bc3167dcc0d4416b29d65fad5f02be4mv2-rfog2vp6nchtg3hyzdmej7jniaz8aqp012snwas3xe.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_6a69333d748d45b592417aa139def4f4mv2-1-rfog29523bmxpgeqn3vcvd8l922f607fxz50dnpk2q-1.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="poster">
                 </div>
             </div>
         </div>
