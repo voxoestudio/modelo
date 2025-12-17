@@ -15,14 +15,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE DESIGN SYSTEM (Ultra Dark) --- */
+        /* --- DESIGN SYSTEM & SPACING --- */
         :root {
-            --red: #E50914; /* Vermelho Netflix */
+            --red: #E50914;
             --black: #000000;
             --dark-surface: #101010;
-            --border: #333333;
             --text-main: #FFFFFF;
             --text-dim: #B3B3B3;
+            
+            /* ESPAÇAMENTOS DESKTOP */
+            --spacing-section: 120px; /* Espaço padrão entre seções */
+            --spacing-element: 40px;  /* Espaço entre elementos grandes */
+            --spacing-text: 20px;     /* Espaço entre textos */
+            
+            /* TYPOGRAPHY DESKTOP */
+            --font-h1: 4.5rem;
+            --font-h2: 3rem;
+            --font-h3: 1.8rem;
+            --font-p: 1.2rem;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,29 +43,33 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            /* Textura de ruído (Noise) para aspecto de cinema */
+            line-height: 1.6;
             position: relative;
         }
         
+        /* Textura de Cinema (Noise) */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 9999; opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
 
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; color: white; }
-        p { color: var(--text-dim); line-height: 1.6; font-size: 1.1rem; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; color: white; line-height: 1.2; }
+        p { color: var(--text-dim); font-size: var(--font-p); margin-bottom: var(--spacing-text); }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         img { max-width: 100%; display: block; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 100px 0; border-bottom: 1px solid #1a1a1a; }
+        /* Container com respiro lateral */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        
+        /* Seções com espaçamento generoso */
+        section { padding: var(--spacing-section) 0; border-bottom: 1px solid #1a1a1a; }
 
         /* --- BOTÃO (HOVER BRANCO) --- */
         .btn-cta {
             background-color: var(--red);
             color: white;
-            padding: 18px 45px;
+            padding: 20px 50px;
             font-size: 1.1rem;
             font-weight: 700;
             border-radius: 4px;
@@ -64,78 +78,79 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            margin-top: 10px; /* Pequeno espaço extra acima do botão */
         }
         .btn-cta:hover {
             background-color: white;
             color: var(--red);
             transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
 
         /* --- HEADER --- */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
             background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
-            padding: 20px 0;
+            padding: 25px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
         }
         
-        .nav-container { display: flex; justify-content: center; align-items: center; gap: 50px; }
-        .logo img { height: 45px; }
+        .nav-container { display: flex; justify-content: center; align-items: center; gap: 60px; }
+        .logo img { height: 50px; }
         
-        .nav-menu { display: flex; gap: 30px; align-items: center; }
-        .nav-menu a { font-size: 0.95rem; font-weight: 600; opacity: 0.8; transition: 0.3s; }
+        .nav-menu { display: flex; gap: 40px; align-items: center; }
+        .nav-menu a { font-size: 1rem; font-weight: 600; opacity: 0.8; transition: 0.3s; }
         .nav-menu a:hover { opacity: 1; color: white; }
         
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: white; }
 
-        /* --- HERO (WALLPAPER DE FILMES LOCAL) --- */
+        /* --- HERO (WALLPAPER DE FILMES) --- */
         .hero {
             height: 100vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            /* Imagem de Fundo Local "capa hero.jpg" + Overlay Escuro */
             background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), 
                         url('capa hero.jpg'); 
             background-size: cover; background-position: center;
-            padding-top: 80px; border-bottom: none;
+            padding-top: 100px; border-bottom: none;
         }
         .hero-content { max-width: 900px; padding: 0 20px; animation: fadeInUp 1s ease; }
-        .hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1.1; text-transform: uppercase; }
+        .hero h1 { font-size: var(--font-h1); margin-bottom: 25px; text-transform: uppercase; }
         .hero h1 span { color: var(--red); }
-        .hero p { font-size: 1.4rem; margin-bottom: 40px; color: #f0f0f0; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
-        .hero .highlight-text { font-weight: 800; font-size: 1.6rem; display: block; margin-top: 10px; margin-bottom: 40px; color: white; }
+        .hero p { font-size: 1.5rem; margin-bottom: 40px; color: #f0f0f0; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+        .hero .highlight-text { font-weight: 800; font-size: 1.6rem; display: block; margin-top: 15px; margin-bottom: 50px; color: white; }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- MARQUEE --- */
-        .marquee-section { padding: 30px 0; background: var(--dark-surface); border-top: 1px solid #222; overflow: hidden; }
-        .marquee-track { display: flex; gap: 50px; width: max-content; animation: scroll 40s linear infinite; }
-        .marquee-track img { height: 45px; filter: grayscale(0%); opacity: 1; }
+        .marquee-section { padding: 40px 0; background: var(--dark-surface); border-top: 1px solid #222; overflow: hidden; }
+        .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll 40s linear infinite; }
+        .marquee-track img { height: 50px; filter: grayscale(0%); opacity: 1; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- SEÇÃO VÍDEO (NOVA) --- */
-        .video-section { padding: 80px 0; background: #000; text-align: center; }
+        /* --- SEÇÃO VÍDEO --- */
+        .video-section { padding: var(--spacing-section) 0; background: #000; text-align: center; }
         .video-container {
-            max-width: 900px; margin: 0 auto;
+            max-width: 950px; margin: 0 auto;
             border: 1px solid #333; border-radius: 12px; overflow: hidden;
             box-shadow: 0 0 80px rgba(0,0,0,0.9);
             position: relative;
         }
         .video-container:hover { border-color: rgba(255,255,255,0.3); }
         .video-container video { width: 100%; display: block; }
-        .video-text { margin-top: 40px; }
+        .video-text { margin-top: 50px; }
 
         /* --- DESTAQUES --- */
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-title { font-size: var(--font-h2); margin-bottom: 20px; }
         .section-title span { color: var(--red); }
+        .section-subtitle { max-width: 700px; margin: 0 auto; font-size: 1.2rem; }
 
         .poster-slider { overflow: hidden; padding: 20px 0; }
-        .poster-track { display: flex; gap: 20px; width: max-content; animation: scroll 60s linear infinite; }
+        .poster-track { display: flex; gap: 25px; width: max-content; animation: scroll 60s linear infinite; }
         .poster-track:hover { animation-play-state: paused; }
         .poster { 
-            width: 200px; transition: 0.3s; cursor: pointer; border-radius: 6px; 
+            width: 220px; transition: 0.3s; cursor: pointer; border-radius: 8px; 
             border: 2px solid transparent; 
         }
         .poster:hover { transform: scale(1.1); border-color: white; z-index: 2; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
@@ -143,158 +158,176 @@
         /* --- AO VIVO (GRID/CARROSSEL) --- */
         .live-section { background: var(--dark-surface); }
         .live-grid { 
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; 
-            max-width: 1000px; margin: 0 auto 50px; 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; /* Gap maior */
+            max-width: 1100px; margin: 0 auto 60px; 
         }
         .channel-card {
-            background: #1a1a1a; border: 1px solid #333; border-radius: 8px; height: 120px;
-            display: flex; align-items: center; justify-content: center; transition: 0.3s; padding: 10px;
+            background: #1a1a1a; border: 1px solid #333; border-radius: 12px; height: 140px;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s; padding: 20px;
         }
-        .channel-card:hover { background: white; border-color: white; transform: translateY(-5px); }
+        .channel-card:hover { background: white; border-color: white; transform: translateY(-7px); }
         .channel-card img { max-width: 90%; max-height: 90%; object-fit: contain; }
         .channel-card.dup { display: none; }
 
-        .platforms-marquee { padding: 20px 0; background: transparent; overflow: hidden; margin-bottom: 30px; }
+        .platforms-marquee { padding: 40px 0; background: transparent; overflow: hidden; margin-bottom: 30px; }
 
         /* --- ALTA COMPATIBILIDADE --- */
         .compatibility { text-align: center; background: linear-gradient(to bottom, var(--dark-surface), #000); }
-        .comp-list { font-weight: 700; color: white; margin: 10px 0 20px; font-size: 1.2rem; }
-        .comp-img { margin: 50px auto; max-width: 100%; filter: drop-shadow(0 0 30px rgba(255,255,255,0.1)); }
+        .comp-list { font-weight: 700; color: white; margin: 20px 0 30px; font-size: 1.4rem; letter-spacing: 1px; }
+        .comp-img { margin: 60px auto; max-width: 100%; filter: drop-shadow(0 0 40px rgba(255,255,255,0.1)); }
 
         /* --- BENEFÍCIOS --- */
         .benefits-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px;
         }
         .benefit-card {
             background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid #333;
-            padding: 40px; border-radius: 12px; text-align: center; transition: 0.3s;
+            padding: 50px 30px; border-radius: 16px; text-align: center; transition: 0.3s;
         }
-        .benefit-card:hover { border-color: white; transform: translateY(-5px); }
-        .benefit-card img { height: 80px; margin: 0 auto 20px; }
+        .benefit-card:hover { border-color: white; transform: translateY(-10px); }
+        .benefit-card img { height: 90px; margin: 0 auto 30px; }
+        .benefit-card h3 { margin-bottom: 15px; font-size: 1.6rem; }
 
         /* --- COMO FUNCIONA --- */
         .how-it-works { background: linear-gradient(to bottom, #000, #111); text-align: center; }
         
         .hw-visuals {
-            display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 60px;
+            display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 80px;
             flex-wrap: wrap;
         }
-        .hw-img-screen { width: 400px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid #333; }
-        .hw-img-check { width: 320px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); margin-top: 40px; }
+        .hw-img-screen { width: 450px; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid #333; }
+        .hw-img-check { width: 350px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); margin-top: 50px; }
 
         .hw-steps-grid { 
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1100px; margin: 0 auto; 
         }
-        .hw-step { background: #1a1a1a; padding: 30px; border-radius: 8px; border: 1px solid #333; text-align: left; }
+        .hw-step { background: #1a1a1a; padding: 40px 30px; border-radius: 12px; border: 1px solid #333; text-align: left; }
         .hw-step:hover { border-color: white; }
-        .hw-num { font-size: 3rem; font-weight: 900; color: var(--red); opacity: 0.8; margin-bottom: 10px; }
+        .hw-num { font-size: 3.5rem; font-weight: 900; color: var(--red); opacity: 0.8; margin-bottom: 15px; }
+        .hw-step h3 { font-size: 1.5rem; margin-bottom: 10px; }
 
         /* --- PLANOS --- */
         .plans-section { background: #000; }
         .plans-grid { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
-            max-width: 900px; margin: 0 auto; 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; /* Espaço grande entre planos */
+            max-width: 950px; margin: 0 auto; 
         }
         .plan-card {
-            background: #141414; border: 1px solid #333; padding: 40px; border-radius: 12px;
+            background: #141414; border: 1px solid #333; padding: 50px 40px; border-radius: 16px;
             display: flex; flex-direction: column; transition: 0.3s;
         }
         .plan-card:hover { border-color: white; transform: scale(1.02); background: #1a1a1a; }
         .plan-card.featured { border: 2px solid var(--red); background: linear-gradient(180deg, #1a1a1a, #000); }
         .plan-card.featured:hover { border-color: white; }
         
-        .plan-name { font-size: 1.5rem; margin-bottom: 10px; color: white; }
-        .plan-price { font-size: 3rem; font-weight: 800; margin-bottom: 30px; }
-        .plan-price span { font-size: 1rem; color: var(--text-dim); font-weight: 400; }
-        .plan-list li { margin-bottom: 15px; display: flex; align-items: center; color: #ccc; }
-        .plan-list i { color: var(--red); margin-right: 10px; }
+        .plan-name { font-size: 1.6rem; margin-bottom: 10px; color: white; }
+        .plan-price { font-size: 3.5rem; font-weight: 800; margin-bottom: 30px; line-height: 1; }
+        .plan-price span { font-size: 1.2rem; color: var(--text-dim); font-weight: 400; }
+        .plan-list li { margin-bottom: 20px; display: flex; align-items: center; color: #ccc; font-size: 1.1rem; }
+        .plan-list i { color: var(--red); margin-right: 15px; font-size: 1.3rem; }
 
         /* --- FAQ --- */
         .faq { background: var(--dark-surface); }
         .faq-item { border-bottom: 1px solid #333; margin-bottom: 0; }
         .faq-question { 
-            padding: 25px; cursor: pointer; font-size: 1.2rem; display: flex; justify-content: space-between; 
-            background: #000; color: white; transition: 0.3s;
+            padding: 30px; cursor: pointer; font-size: 1.3rem; display: flex; justify-content: space-between; 
+            background: #000; color: white; transition: 0.3s; font-weight: 700;
         }
-        .faq-question:hover { background: #1a1a1a; }
-        .faq-answer { padding: 25px; background: #111; display: none; color: #ccc; }
+        .faq-question:hover { background: #151515; }
+        .faq-answer { padding: 30px; background: #111; display: none; color: #ccc; line-height: 1.8; }
         .faq-item.active .faq-answer { display: block; }
 
         /* --- SUPORTE --- */
-        .support { text-align: center; padding: 80px 0; background: linear-gradient(to bottom, #000, #0a0a0a); }
-        .support-box { background: #141414; border: 1px solid #333; max-width: 700px; margin: 0 auto; padding: 50px; border-radius: 12px; }
+        .support { text-align: center; padding: 120px 0; background: linear-gradient(to bottom, #000, #0a0a0a); }
+        .support-box { background: #141414; border: 1px solid #333; max-width: 800px; margin: 0 auto; padding: 60px; border-radius: 16px; }
         .btn-whatsapp-lg {
-            background: #25d366; color: white; padding: 18px 40px; border-radius: 50px;
-            font-weight: 700; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem;
+            background: #25d366; color: white; padding: 20px 50px; border-radius: 50px;
+            font-weight: 800; display: inline-flex; align-items: center; gap: 15px; font-size: 1.2rem;
             transition: 0.3s;
         }
         .btn-whatsapp-lg:hover { background: white; color: #25d366; }
 
         /* --- FOOTER --- */
         footer { 
-            background: #000; padding: 80px 0 40px; text-align: center; border-top: 1px solid #222; 
+            background: #000; padding: 100px 0 50px; text-align: center; border-top: 1px solid #222; 
         }
-        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 25px; }
-        .footer-logo-img { height: 40px; margin-bottom: 10px; }
-        .footer-desc { max-width: 600px; margin: 0 auto; color: #666; font-size: 0.9rem; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        .footer-logo-img { height: 50px; margin-bottom: 15px; }
+        .footer-desc { max-width: 600px; margin: 0 auto; color: #666; font-size: 1rem; }
         
         .footer-row-center {
-            display: flex; align-items: center; justify-content: center; gap: 30px; margin: 20px 0;
+            display: flex; align-items: center; justify-content: center; gap: 40px; margin: 30px 0;
             flex-wrap: wrap;
         }
         
         .social-btn {
-            width: 45px; height: 45px; background: #222; border-radius: 8px; 
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem;
+            width: 50px; height: 50px; background: #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;
             transition: 0.3s;
         }
         .social-btn:hover { background: white; color: black; }
 
         .payment-pill {
-            background: #111; border: 1px solid #333; border-radius: 50px; padding: 10px 30px;
-            display: flex; align-items: center; gap: 20px;
+            background: #111; border: 1px solid #333; border-radius: 50px; padding: 12px 35px;
+            display: flex; align-items: center; gap: 25px;
         }
-        .payment-pill img { height: 22px; background: white; padding: 2px; border-radius: 2px; }
+        .payment-pill img { height: 25px; background: white; padding: 3px; border-radius: 3px; }
 
-        .copyright { font-weight: 700; color: white; font-size: 0.9rem; }
-        .voxo-credit { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
-        .voxo-credit a { color: rgba(255,255,255,0.6); font-weight: bold; }
+        .copyright { font-weight: 700; color: white; font-size: 1rem; margin-top: 20px; }
+        .voxo-credit { font-size: 0.9rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; }
+        .voxo-credit a { color: rgba(255,255,255,0.6); font-weight: 800; }
         .voxo-credit a:hover { color: white; }
 
         /* --- WHATSAPP FLUTUANTE --- */
         .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
             z-index: 999; animation: pulse 2s infinite; transition: 0.3s; border: 2px solid transparent;
         }
         .whatsapp-float:hover { background: white; color: #25d366; border-color: white; box-shadow: 0 0 40px rgba(255,255,255,0.8); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-        /* --- RESPONSIVIDADE --- */
+        /* --- MEDIA QUERIES (MOBILE RULES) --- */
         @media (max-width: 900px) {
-            :root { --section-spacing: 80px; }
-            .hero { padding-top: 120px; }
-            .hero h1 { font-size: 3rem; }
+            :root { 
+                --section-spacing: 80px; 
+                --font-h1: 2.8rem;
+                --font-h2: 2rem;
+                --font-h3: 1.5rem;
+                --font-p: 1.1rem;
+            }
+            
+            .container { padding: 0 20px; }
+            .hero { padding-top: 100px; }
+            .hero-video-wrapper { max-width: 100%; }
+            
+            /* Header */
             .nav-container { justify-content: space-between; }
             .nav-menu { display: none; }
             .menu-toggle { display: block; }
             .nav-menu.active { 
                 display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; 
-                background: #000; padding: 30px; border-bottom: 1px solid #333; 
+                background: #000; padding: 40px 20px; border-bottom: 1px solid #333; gap: 30px;
             }
-            
-            /* Ajuste Ao Vivo Mobile */
+            .nav-menu a { font-size: 1.2rem; }
+
+            /* Ao Vivo Mobile (Carrossel) */
             .live-grid { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; scroll-snap-type: x mandatory; }
-            .channel-card { min-width: 160px; height: 110px; flex-shrink: 0; scroll-snap-align: start; }
+            .channel-card { min-width: 170px; height: 120px; flex-shrink: 0; scroll-snap-align: start; }
             .channel-card.dup { display: flex; }
             
-            .hw-visuals { flex-direction: column; }
-            .hw-img-screen, .hw-img-check { width: 90%; max-width: 350px; margin-top: 0; }
-            .hw-steps-grid { grid-template-columns: 1fr; }
+            /* Layouts Stacked */
+            .hw-visuals { flex-direction: column; gap: 30px; }
+            .hw-img-screen, .hw-img-check { width: 100%; max-width: 400px; margin-top: 0; }
+            .hw-steps-grid { grid-template-columns: 1fr; gap: 20px; }
+            .plans-grid { grid-template-columns: 1fr; gap: 40px; }
+            .benefits-grid { grid-template-columns: 1fr; gap: 30px; }
             
-            .plans-grid { grid-template-columns: 1fr; }
-            .footer-row-center { flex-direction: column; gap: 20px; }
-            .payment-pill { flex-wrap: wrap; justify-content: center; }
+            /* Footer Mobile */
+            .footer-row-center { flex-direction: column; gap: 30px; }
+            .payment-pill { flex-wrap: wrap; justify-content: center; width: 100%; }
+            
+            .btn-cta { width: 100%; padding: 18px 20px; }
         }
     </style>
 </head>
@@ -310,7 +343,7 @@
                 <a href="#catalogo">Catálogo</a>
                 <a href="#canais">Ao Vivo</a>
                 <a href="#como-funciona">Como Funciona</a>
-                <a href="#planos" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Assinar</a>
+                <a href="#planos" class="btn-cta" style="padding: 10px 25px; margin-top:0;">Assinar</a>
             </nav>
         </div>
     </header>
@@ -319,7 +352,7 @@
         <div class="container hero-content">
             <h1>Você só precisa de <br><span>DEZPILA</span></h1>
             <p>Filmes que acabaram de sair do cinema, séries exclusivas e canais ao vivo. Tudo em um só lugar, pagando pouco e assistindo muito.</p>
-            <span class="highlight-text" style="display:block; font-size:1.5rem; font-weight:700; color:white; margin-bottom:40px;">A melhor experiência de streaming começa agora.</span>
+            <span class="highlight-text" style="display:block; font-size:1.4rem; font-weight:700; color:white; margin-bottom:40px; letter-spacing:1px;">A melhor experiência de streaming começa agora.</span>
             <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
@@ -349,7 +382,7 @@
         <div class="container">
             <h2>Produções em <span>Destaque</span></h2>
             <p>Aproveite lançamentos direto do cinema e o melhor conteúdo dos streamings mais populares.</p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">Seja para maratonar séries, assistir aquele filme comentado do momento ou curtir conteúdos exclusivos, aqui você encontra tudo.</p>
+            <p style="font-size: 1rem; margin-top: 15px; color:#fff;">Seja para maratonar séries, assistir aquele filme comentado do momento ou curtir conteúdos exclusivos, aqui você encontra tudo.</p>
             
             <div class="poster-slider">
                 <div class="poster-track">
@@ -374,10 +407,10 @@
 
     <section id="canais" class="live-section">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
+            <div style="text-align: center; margin-bottom: 60px;">
                 <h2>Não perca o melhor do <span>Ao Vivo</span></h2>
                 <p>Notícias, esportes, documentários e entretenimento em tempo real, já incluídos na plataforma.</p>
-                <p style="font-size: 0.9rem;">Tudo isso sem pagar a mais.</p>
+                <p style="font-size: 1rem; color:#fff; font-weight:600;">Tudo isso sem pagar a mais.</p>
             </div>
             
             <div class="live-grid">
@@ -395,7 +428,7 @@
                 <div class="channel-card dup"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png"></div>
             </div>
 
-            <div style="text-align: center; margin-bottom: 50px;">
+            <div style="text-align: center; margin-bottom: 60px;">
                 <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
             </div>
 
@@ -421,7 +454,7 @@
 
     <section id="beneficios" class="benefits">
         <div class="container">
-            <div style="text-align: center;">
+            <div style="text-align: center; margin-bottom: 60px;">
                 <h2>Veja o que você terá com o <span>DezPila</span></h2>
             </div>
             <div class="benefits-grid">
@@ -446,7 +479,7 @@
 
     <section id="como-funciona" class="how-it-works">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
+            <div style="text-align: center; margin-bottom: 70px;">
                 <h2>Como <span>funciona?</span></h2>
                 <p>Simples, rápido e sem burocracia.</p>
             </div>
@@ -474,7 +507,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 50px;">
+            <div style="text-align: center; margin-top: 60px;">
                 <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
             </div>
         </div>
@@ -482,7 +515,7 @@
 
     <section id="planos" class="plans-section">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
+            <div style="text-align: center; margin-bottom: 80px;">
                 <h2>Selecione o seu <span>plano</span></h2>
                 <p>Diversão garantida pelo menor preço.</p>
             </div>
@@ -550,7 +583,7 @@
 
     <section class="faq">
         <div class="container" style="max-width:800px;">
-            <div style="text-align: center; margin-bottom: 50px;">
+            <div style="text-align: center; margin-bottom: 60px;">
                 <h2>Dúvidas <span>Frequentes</span></h2>
             </div>
             
