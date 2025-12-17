@@ -24,7 +24,7 @@
             --text-dim: #B3B3B3;
             
             /* TIPOGRAFIA UNIFICADA (DESKTOP) */
-            --font-heading-desktop: 3rem; /* H1, H2, H3 mesmo tamanho */
+            --font-heading-desktop: 3rem;
             --font-body-desktop: 1.1rem;
             
             /* TIPOGRAFIA UNIFICADA (MOBILE) */
@@ -64,7 +64,7 @@
             color: white; 
             line-height: 1.2;
             text-transform: uppercase;
-            font-size: var(--font-heading-desktop); /* Tamanho Único Desktop */
+            font-size: var(--font-heading-desktop);
             margin-bottom: 20px;
         }
 
@@ -82,7 +82,6 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
         
-        /* Espaçamento Vertical das Seções */
         section { 
             padding: var(--section-padding-desktop) 0; 
             border-bottom: 1px solid #1a1a1a; 
@@ -103,9 +102,11 @@
             border: 2px solid transparent;
             margin-top: 15px;
         }
+        
+        /* ALTERAÇÃO 1: TEXTO VERMELHO NO HOVER */
         .btn-cta:hover {
             background-color: white;
-            color: var(--red);
+            color: var(--red); /* Texto Vermelho */
             transform: scale(1.02);
             box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
@@ -129,7 +130,7 @@
         
         .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: white; }
 
-        /* --- HERO (CORRIGIDO) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             min-height: 700px;
@@ -137,7 +138,6 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), 
                         url('capa hero.jpg'); 
             background-size: cover; background-position: center;
-            /* ESPAÇO SUPERIOR SEGURO PARA O TÍTULO NÃO FICAR EMBAIXO DO HEADER */
             padding-top: 150px; 
             border-bottom: none;
         }
@@ -179,7 +179,7 @@
         }
         .poster:hover { transform: scale(1.1); border-color: white; z-index: 2; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
 
-        /* --- AO VIVO (GRID/CARROSSEL) --- */
+        /* --- AO VIVO --- */
         .live-section { background: var(--dark-surface); }
         .live-grid { 
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
@@ -279,9 +279,20 @@
         .footer-logo-img { height: 50px; margin-bottom: 15px; }
         .footer-desc { max-width: 600px; margin: 0 auto; color: #666; font-size: 1rem; }
         
+        /* ALTERAÇÃO 2: FOOTER VERTICAL (ÍCONES EM CIMA, PÍLULA EM BAIXO) */
         .footer-row-center {
-            display: flex; align-items: center; justify-content: center; gap: 40px; margin: 30px 0;
-            flex-wrap: wrap;
+            display: flex; 
+            flex-direction: column; /* Força vertical */
+            align-items: center; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 30px 0;
+        }
+        
+        /* Container para os ícones sociais lado a lado */
+        .social-icons {
+            display: flex;
+            gap: 20px;
         }
         
         .social-btn {
@@ -304,7 +315,7 @@
 
         /* --- WHATSAPP FLUTUANTE --- */
         .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; 
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
             z-index: 999; animation: pulse 2s infinite; transition: 0.3s; border: 2px solid transparent;
         }
@@ -321,7 +332,7 @@
             section { padding: var(--section-padding-mobile) 0; }
             
             /* Título Hero Mobile */
-            .hero { padding-top: 130px; } /* Ajuste seguro mobile */
+            .hero { padding-top: 130px; }
             .hero-video-wrapper { max-width: 100%; }
             
             .nav-container { justify-content: space-between; }
@@ -342,7 +353,7 @@
             .plans-grid { grid-template-columns: 1fr; gap: 40px; }
             .benefits-grid { grid-template-columns: 1fr; gap: 30px; }
             
-            .footer-row-center { flex-direction: column; gap: 30px; }
+            .footer-row-center { gap: 30px; }
             .payment-pill { flex-wrap: wrap; justify-content: center; width: 100%; }
             
             .btn-cta { width: 100%; padding: 18px 20px; }
@@ -416,8 +427,8 @@
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_46a7b9829517437598f3fd4805a37530mv2-rfog2hllstyily2g9pizzt3qliwq3a50z50dp5d0iq.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_35a6fbc749ff40c5b5ae06f832753f31mv2-rfog2bykntqsoaan6n38kuiz17oit3imyd3gthldk2.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9da5689adac04f94a0438377456ae6damv2-rfog2p4bbi8t6trj1ss0jr7fclvnsuyvo689jd1v4y.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9bc3167dcc0d4416b29d65fad5f02be4mv2-rfog2vp6nchtg3hyzdmej7jniaz8aqp012snwas3xe.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_6a69333d748d45b592417aa139def4f4mv2-1-rfog29523bmxpgeqn3vcvd8l922f607fxz50dnpk2q-1.png" class="poster">
                 </div>
             </div>
         </div>
@@ -634,7 +645,7 @@
 
     <footer>
         <div class="container footer-content">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila Oficial" class="footer-logo-img">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila" class="footer-logo-img">
             <p class="footer-desc">DezPila, o melhor streaming desde 2023, com alto nível de satisfação dos clientes.</p>
 
             <div class="footer-row-center">
