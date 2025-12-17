@@ -9,368 +9,367 @@
     
     <link rel="icon" href="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" type="image/png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VARIÁVEIS & RESET PREMIUM --- */
         :root {
-            --primary: #E50914;
-            --primary-glow: rgba(229, 9, 20, 0.6);
+            --primary: #E50914; /* Vermelho Netflix/DezPila */
+            --primary-glow: rgba(229, 9, 20, 0.5);
             --accent: #ff1e2b;
-            --bg-main: #050505;
-            --bg-secondary: #0a0a0a;
-            --text-color: #ffffff;
-            --text-muted: #a3a3a3;
             
-            /* Vidro */
-            --glass-bg: rgba(20, 20, 20, 0.7);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+            /* Paleta Escura Cinematográfica */
+            --bg-main: #030303; /* Preto quase absoluto */
+            --bg-secondary: #0a0a0a; /* Cinza muito escuro para seções */
+            --text-color: #ffffff;
+            --text-muted: #b3b3b3; /* Cinza claro para descrições */
+            
+            /* UI Cards Premium (Vidro Escuro) */
+            --card-bg: rgba(20, 20, 20, 0.85);
+            --card-border: 1px solid rgba(255, 255, 255, 0.1);
+            --card-hover-border: 1px solid rgba(255, 255, 255, 0.8); /* Hover Branco */
             --glass-blur: blur(20px);
+            
+            --section-spacing: 120px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        html { scroll-behavior: smooth; }
-        
-        /* CORREÇÃO DE ROLAGEM HORIZONTAL */
-        html, body { width: 100%; overflow-x: hidden; position: relative; }
+        html { scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
         
         body { 
             background-color: var(--bg-main); 
             color: var(--text-color); 
-            background-image: radial-gradient(circle at top center, rgba(229,9,20,0.08) 0%, #000000 60%);
+            /* Gradiente de fundo sutil para profundidade */
+            background-image: radial-gradient(circle at 50% 0%, rgba(229,9,20,0.15) 0%, #000000 70%);
             background-attachment: fixed;
+            position: relative;
         }
 
-        /* EFEITO GRANULADO (NOISE) */
+        /* EFEITO DE GRANULADO (NOISE) SUAVE - Textura de Cinema */
         body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.03; 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.025; 
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
 
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.5px; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.5px; color: white; }
+        p { color: var(--text-muted); line-height: 1.6; }
         a { text-decoration: none; color: white; transition: all 0.3s ease; }
         ul { list-style: none; }
         img, video { max-width: 100%; display: block; }
-        section { position: relative; z-index: 1; }
+        section { position: relative; z-index: 1; padding: var(--section-spacing) 0; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
-        /* --- BOTÃO CTA (HOVER BRANCO) --- */
+        /* --- BOTÃO CTA PREMIUM (Hover Branco) --- */
         .btn-cta {
             background: linear-gradient(45deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            padding: 18px 45px;
+            padding: 18px 50px;
             font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             text-transform: uppercase;
-            border-radius: 50px;
+            letter-spacing: 1px;
+            border-radius: 4px; /* Cantos ligeiramente arredondados como HBO/Prime */
             display: inline-block;
-            border: 2px solid transparent; /* Preparar borda */
+            border: 2px solid transparent;
             cursor: pointer;
             box-shadow: 0 10px 30px -10px var(--primary-glow);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; overflow: hidden;
         }
         
-        /* EFEITO HOVER BRANCO NO BOTÃO */
+        /* Efeito Hover Branco Brilhante */
         .btn-cta:hover { 
-            background: #ffffff; 
-            color: var(--primary); /* Texto vira vermelho */
-            transform: translateY(-3px) scale(1.02); 
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Brilho Branco Forte */
-            border-color: #ffffff;
+            background: white;
+            color: var(--primary);
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4); 
         }
 
-        /* --- HEADER CENTRALIZADO --- */
+        /* --- HEADER ESTILO NETFLIX/HBO --- */
         header {
-            background: rgba(0,0,0,0.8);
-            padding: 20px 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%); /* Gradiente transparente */
+            padding: 25px 0;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            border-bottom: var(--glass-border);
-            backdrop-filter: var(--glass-blur);
+            transition: 0.4s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
         }
         
-        .nav-container { display: flex; justify-content: center; align-items: center; gap: 50px; }
-        .logo img { height: 55px; filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
         
-        .nav-menu { display: flex; gap: 35px; align-items: center; }
-        .nav-menu a { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; transition: 0.3s; }
-        
-        /* HOVER BRANCO NO MENU */
-        .nav-menu a:hover { 
-            opacity: 1; 
-            color: #ffffff; 
-            text-shadow: 0 0 15px rgba(255,255,255,0.8); 
+        .nav-menu { display: flex; gap: 40px; align-items: center; }
+        .nav-menu a { 
+            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; transition: 0.3s; 
+            font-family: 'Montserrat', sans-serif;
         }
+        /* Hover Branco no Menu */
+        .nav-menu a:hover { opacity: 1; color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
         
-        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: white; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: white; opacity: 0.8; transition: 0.3s; }
+        .menu-toggle:hover { opacity: 1; color: white; }
 
-        /* --- HERO --- */
+        /* --- HERO IMMERSIVO --- */
         .hero {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            padding-top: 120px; padding-bottom: 80px;
-            background: radial-gradient(circle at center, rgba(229,9,20,0.1) 0%, transparent 70%);
+            padding-top: 150px; padding-bottom: 100px;
+            /* Fundo radial dramático */
+            background: radial-gradient(circle at center, rgba(229,9,20,0.15) 0%, transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0) 80%, #030303 100%);
             text-align: center;
         }
-        .hero-container { display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 900px; }
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 30px; font-weight: 900; }
-        .hero h1 span { color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
+        .hero-container { display: flex; flex-direction: column; align-items: center; max-width: 950px; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 40px; font-weight: 900; text-transform: uppercase; }
+        .hero h1 span { color: var(--primary); /* text-shadow: 0 0 40px var(--primary-glow); Removido glow vermelho do texto para manter foco no branco dos botões */ }
 
+        /* Contêiner de Vídeo Premium */
         .hero-video-wrapper {
-            width: 100%; max-width: 750px; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 50px rgba(229,9,20,0.15);
-            border: 1px solid rgba(255,255,255,0.15); margin-bottom: 30px; transition: 0.5s;
+            width: 100%; max-width: 800px; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9); /* Sombra profunda */
+            border: 1px solid rgba(255,255,255,0.1); 
+            margin-bottom: 40px; transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
         }
-        .hero-video-wrapper:hover { transform: scale(1.02); box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 70px rgba(255,255,255,0.2); border-color: white; }
+        /* Efeito de brilho na borda ao passar o mouse */
+        .hero-video-wrapper:hover { 
+            transform: scale(1.02); 
+            border-color: rgba(255,255,255,0.4); /* Borda branca sutil */
+            box-shadow: 0 50px 120px rgba(0,0,0,1), 0 0 30px rgba(255,255,255,0.1);
+        }
         .hero-video-wrapper video { width: 100%; height: auto; display: block; }
 
-        .hero p { font-size: 1.3rem; margin-bottom: 40px; color: #e0e0e0; font-weight: 300; line-height: 1.6; max-width: 700px; }
+        .hero p { font-size: 1.4rem; margin-bottom: 40px; max-width: 750px; font-weight: 400; }
 
-        /* --- CANAIS --- */
-        .channels-section { padding: 40px 0; background: var(--bg-secondary); border-top: 1px solid #222; border-bottom: 1px solid #222; overflow: hidden; }
-        .marquee { display: flex; gap: 40px; animation: scroll 40s linear infinite; width: max-content; }
-        .marquee img { height: 60px; object-fit: contain; filter: none; opacity: 1; }
+        /* --- TÍTULOS DE SEÇÃO ESTILO STREAMING --- */
+        .section-header { text-align: left; margin-bottom: 50px; }
+        .section-title { font-size: 2.5rem; text-transform: uppercase; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+        .section-title span { color: var(--primary); }
+        .section-subtitle { font-size: 1.1rem; max-width: 600px; }
+        .center-header { text-align: center; } .center-header .section-subtitle { margin: 0 auto; }
+
+        /* --- MARQUEES (Carrosséis Infinitos) --- */
+        .channels-section { padding: 30px 0; background: var(--bg-secondary); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+        .marquee { display: flex; gap: 50px; animation: scroll 35s linear infinite; width: max-content; }
+        .marquee img { height: 50px; object-fit: contain; filter: grayscale(100%) opacity(0.6); transition: 0.3s; }
+        /* Hover Branco nos logos */
+        .marquee img:hover { filter: grayscale(0%) opacity(1); drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- TÍTULOS --- */
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 3rem; text-transform: uppercase; font-weight: 900; margin-bottom: 15px; }
-        .section-title span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
-        .section-subtitle { color: var(--text-muted); font-size: 1.2rem; }
-
-        /* --- DESTAQUES --- */
-        .highlights { padding: 100px 0; overflow: hidden; }
-        .poster-marquee { padding: 40px 0; position: relative; overflow: hidden; }
-        .poster-track { display: flex; gap: 25px; width: max-content; animation: scrollPosters 50s linear infinite; }
+        /* --- DESTAQUES (Pôsteres) --- */
+        .highlights { overflow: hidden; background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary)); }
+        .poster-marquee { padding: 20px 0; position: relative; overflow: hidden; }
+        .poster-track { display: flex; gap: 20px; width: max-content; animation: scrollPosters 60s linear infinite; }
         .poster-track:hover { animation-play-state: paused; }
         
-        .poster-card { width: 220px; flex-shrink: 0; border-radius: 12px; overflow: hidden; transition: all 0.4s ease; cursor: pointer; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .poster-card { width: 200px; flex-shrink: 0; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; position: relative; }
+        .poster-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
         
-        /* HOVER BRANCO NO POSTER */
+        /* Hover Branco Premium no Pôster */
         .poster-card:hover { 
-            transform: scale(1.1) translateY(-10px); 
-            z-index: 10; 
-            border: 3px solid #ffffff; /* Borda Branca */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(255,255,255,0.4); 
+            transform: scale(1.15); z-index: 10; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 3px white; /* Borda branca brilhante */
         }
         @keyframes scrollPosters { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- AO VIVO --- */
-        .live-section { padding: 80px 0; overflow: hidden; }
+        /* --- AO VIVO (Grid Desktop / Marquee Mobile) --- */
+        .live-section { overflow: hidden; background: var(--bg-secondary); }
         .live-channels-container { max-width: 1000px; margin: 0 auto 60px auto; }
-        .live-channels-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .live-channels-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
 
         .live-icon {
-            background: var(--glass-bg); border: var(--glass-border); backdrop-filter: var(--glass-blur);
-            border-radius: 15px; padding: 5px; height: 120px;
+            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
+            border-radius: 12px; padding: 20px; height: 130px;
             display: flex; align-items: center; justify-content: center;
-            transition: all 0.4s ease; overflow: hidden;
+            transition: all 0.3s ease; overflow: hidden; position: relative;
         }
-        
-        /* HOVER BRANCO NO ÍCONE AO VIVO */
+        /* Hover Branco nos Canais Ao Vivo */
         .live-icon:hover { 
-            border-color: #ffffff; 
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-7px); 
-            box-shadow: 0 0 25px rgba(255,255,255,0.6); /* Glow Branco */
+            border-color: white; 
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.3);
         }
-        
-        .live-icon img { width: 90%; height: 90%; object-fit: contain; }
+        .live-icon img { width: 85%; height: 85%; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); transition: 0.3s; }
+        .live-icon:hover img { transform: scale(1.05); }
         .live-icon.dup { display: none; } 
 
-        .platforms-marquee { padding: 30px 0; background: transparent; overflow: hidden; margin-bottom: 50px; }
+        .platforms-marquee { padding: 20px 0; background: transparent; overflow: hidden; margin-bottom: 30px; opacity: 0.7; }
 
-        /* --- ALTA COMPATIBILIDADE --- */
-        .compatibility { padding: 120px 0; background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-main)); text-align: center; }
-        .comp-container { display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 900px; margin: 0 auto; }
-        .comp-img-wrapper { margin: 50px 0; position: relative; }
-        .comp-img-wrapper::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; background: var(--primary-glow); filter: blur(80px); opacity: 0.2; z-index: -1; }
-        .comp-img { max-width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); }
+        /* --- ALTA COMPATIBILIDADE (Vertical Centralizado) --- */
+        .compatibility { 
+            background: linear-gradient(to bottom, var(--bg-secondary), #050505);
+            text-align: center; 
+        }
+        .comp-container { display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; }
+        .comp-img-wrapper { margin: 60px 0; position: relative; }
+        /* Glow vermelho sutil atrás da imagem central */
+        .comp-img-wrapper::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; height: 70%; background: var(--primary); filter: blur(120px); opacity: 0.15; z-index: -1; }
+        .comp-img { max-width: 100%; height: auto; display: block; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8)); }
+
+        /* --- CARDS GENÉRICOS (Benefícios, Passos) - Estilo Premium Escuro --- */
+        .generic-card {
+            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
+            padding: 40px 30px; border-radius: 16px; text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        /* Hover Branco Genérico */
+        .generic-card:hover { 
+            border-color: white; transform: translateY(-7px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+        }
+        .card-icon { height: 80px; margin-bottom: 25px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); transition: 0.3s; }
+        .generic-card:hover .card-icon { transform: scale(1.1); filter: drop-shadow(0 10px 20px rgba(255,255,255,0.2)); }
+        .generic-card h3, .generic-card h4 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
 
         /* --- BENEFÍCIOS --- */
-        .benefits { padding: 100px 0; background: var(--bg-secondary); }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
-        .benefit-card { 
-            background: var(--glass-bg); border: var(--glass-border); backdrop-filter: var(--glass-blur);
-            padding: 50px 40px; border-radius: 25px; text-align: center; transition: 0.4s;
-        }
-        
-        /* HOVER BRANCO NO BENEFÍCIO */
-        .benefit-card:hover { 
-            transform: translateY(-10px); 
-            border-color: #ffffff; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.2); 
-        }
-        
-        .benefit-icon { height: 100px; margin: 0 auto 30px auto; display: block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
-        .benefit-card h3 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 800; }
+        .benefits { background: var(--bg-main); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
 
         /* --- COMO FUNCIONA --- */
-        .how-it-works { padding: 120px 0; background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-main)); text-align: center; }
-        .steps-wrapper { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 60px; }
-        .step-img-card { max-width: 350px; width: 100%; height: auto; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transition: transform 0.3s; }
+        .how-it-works { background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary)); text-align: center; }
+        .steps-wrapper { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 80px; }
+        .step-img-card { max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .step-img-card:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.5); }
         
-        /* HOVER BRANCO NA IMAGEM DE PASSOS */
-        .step-img-card:hover { 
-            transform: scale(1.02); 
-            border: 2px solid rgba(255,255,255,0.5);
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .step-number-icon { width: 50px; height: 50px; background: var(--primary); color: white; font-size: 1.5rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 5px 15px var(--primary-glow); }
+
+        /* --- PLANOS (Cards de Preço Premium) --- */
+        .pricing { background: var(--bg-secondary); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, max-content); gap: 40px; justify-content: center; margin-top: 50px; }
+        .price-card { 
+            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
+            border-radius: 20px; padding: 50px 40px; text-align: left; position: relative; transition: 0.3s; 
+            display: flex; flex-direction: column; min-width: 320px;
+        }
+        .price-card.featured { 
+            background: linear-gradient(145deg, rgba(30,30,30,0.9), rgba(229,9,20,0.1)); 
+            border: 2px solid var(--primary); 
+            transform: scale(1.05); z-index: 2; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(229,9,20,0.2);
         }
         
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-        .step-item { background: var(--glass-bg); border: var(--glass-border); border-radius: 20px; padding: 30px 20px; text-align: center; transition: 0.3s; }
-        
-        /* HOVER BRANCO NO ITEM DE PASSO */
-        .step-item:hover { border-color: #ffffff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        
-        .step-number-icon { width: 60px; height: 60px; background: var(--primary); color: white; font-size: 1.8rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 10px 20px var(--primary-glow); }
-        .step-item h4 { font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; color: white; }
-        .step-item p { font-size: 1rem; color: var(--text-muted); line-height: 1.5; }
+        /* Hover Branco nos Planos */
+        .price-card:hover { transform: translateY(-10px) scale(1.02); border-color: white; box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,255,255,0.2); }
+        .price-card.featured:hover { transform: translateY(-10px) scale(1.07); border-color: white; }
 
-        /* --- PREÇOS --- */
-        .pricing { padding: 120px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; justify-content: center; max-width: 900px; margin: 0 auto; }
-        .price-card { background: var(--glass-bg); border: var(--glass-border); backdrop-filter: var(--glass-blur); border-radius: 25px; padding: 40px; text-align: center; position: relative; transition: 0.4s; display: flex; flex-direction: column; }
-        .price-card.featured { transform: scale(1.05); border: 2px solid var(--primary); background: linear-gradient(160deg, rgba(20,20,20,0.9), rgba(229,9,20,0.05)); z-index: 2; box-shadow: 0 0 30px var(--primary-glow); }
-        
-        /* HOVER BRANCO NO CARD DE PREÇO */
-        .price-card:hover { 
-            transform: translateY(-10px); 
-            border-color: #ffffff; 
-            box-shadow: 0 0 30px rgba(255,255,255,0.4); 
-        }
-        
-        .price-header h3 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 800; }
-        .price-value { font-size: 3.5rem; font-weight: 900; margin: 25px 0; color: white; }
-        .price-features { margin-bottom: 30px; list-style: none; text-align: left; }
-        .price-features li { margin-bottom: 15px; font-size: 1rem; color: #e0e0e0; display: flex; align-items: center; }
-        .price-features li i { color: var(--primary); margin-right: 15px; }
+        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 15px var(--primary-glow); }
+        .price-header h3 { font-size: 1.4rem; font-weight: 800; opacity: 0.9; }
+        .small-text { font-size: 0.9rem; opacity: 0.6; }
+        .price-value { font-size: 4rem; font-weight: 900; margin: 30px 0; color: white; line-height: 1; font-family: 'Montserrat', sans-serif; }
+        .price-value span { font-size: 1.5rem; font-weight: 700; }
+        .price-card.featured .price-value { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
+        .price-features li { margin-bottom: 18px; font-size: 1.05rem; display: flex; align-items: center; opacity: 0.9; }
+        .price-features li i { color: var(--primary); margin-right: 15px; font-size: 1.2rem; }
+        .price-card .btn-cta { width: 100%; text-align: center; margin-top: auto; }
 
-        /* --- FAQ --- */
-        .faq { padding: 100px 0; background: var(--bg-secondary); }
-        .faq-item { background: var(--glass-bg); border: var(--glass-border); margin-bottom: 15px; border-radius: 10px; overflow: hidden; transition: 0.3s; }
-        .faq-question { padding: 25px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; }
-        .faq-answer { padding: 0 25px 25px; display: none; color: var(--text-muted); line-height: 1.6; }
-        
-        /* HOVER BRANCO NA PERGUNTA */
-        .faq-item:hover { border-color: #ffffff; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-        
+        /* --- FAQ (Estilo Acordeão Limpo) --- */
+        .faq { background: var(--bg-main); }
+        .faq-container { max-width: 800px; }
+        .faq-item { background: var(--card-bg); border: var(--card-border); margin-bottom: 15px; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+        /* Hover Branco no FAQ */
+        .faq-item:hover { border-color: white; background: rgba(255,255,255,0.03); }
+        .faq-question { padding: 25px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; transition: 0.3s; }
+        .faq-answer { padding: 0 25px 25px; display: none; color: var(--text-muted); line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); }
         .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-question { color: var(--primary); }
+        .faq-item.active { border-color: var(--primary); }
 
         /* --- SUPORTE --- */
-        .support-section { padding: 80px 0; text-align: center; background: linear-gradient(to bottom, var(--bg-main), #000); }
+        .support-section { padding: 100px 0; text-align: center; background: linear-gradient(to bottom, var(--bg-secondary), #000); }
         .support-card {
-            background: var(--glass-bg); border: var(--glass-border); backdrop-filter: var(--glass-blur);
-            border-radius: 20px; padding: 50px; max-width: 800px; margin: 0 auto;
-            border: 1px solid rgba(37, 211, 102, 0.2);
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.1);
+            background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(37, 211, 102, 0.05));
+            border: 1px solid rgba(37, 211, 102, 0.3); backdrop-filter: var(--glass-blur);
+            border-radius: 20px; padding: 60px 40px; max-width: 800px; margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .support-content h2 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; color: white; }
-        .support-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 35px; }
+        .support-content h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
         
-        /* BOTÃO WHATSAPP GRANDE (HOVER BRANCO) */
+        /* Botão WhatsApp (Hover Branco) */
         .whatsapp-btn-large {
-            background: linear-gradient(90deg, #25d366, #1da851);
-            color: white; padding: 20px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 50px;
-            display: inline-flex; align-items: center; gap: 15px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); transition: 0.3s;
-            border: 2px solid transparent;
+            background: #25d366; color: white; padding: 20px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 4px;
+            display: inline-flex; align-items: center; gap: 15px; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); transition: 0.3s; border: 2px solid transparent;
         }
         .whatsapp-btn-large:hover { 
-            background: #ffffff;
-            color: #25d366;
-            border-color: #ffffff;
-            transform: translateY(-5px); 
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); 
+            background: white; color: #25d366; border-color: white;
+            transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 255, 255, 0.5); 
         }
 
-        /* --- FOOTER --- */
-        footer { background: #000; padding: 80px 0 40px 0; text-align: center; border-top: 1px solid #111; }
-        .footer-logo-img { height: 50px; margin: 0 auto 30px auto; }
-        .footer-desc { color: var(--text-muted); margin-bottom: 50px; font-size: 1.1rem; }
-        .footer-middle-row { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
-        .social-group { display: flex; gap: 15px; align-items: center; }
+        /* --- FOOTER PREMIUM (Baseado na imagem de referência) --- */
+        footer { background: #000; padding: 80px 0 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo-img { height: 40px; margin: 0 auto 30px auto; opacity: 0.9; }
+        .footer-desc { color: var(--text-muted); margin-bottom: 50px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-middle-row { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
         
-        /* ÍCONES SOCIAIS (HOVER BRANCO) */
+        /* Ícones Sociais (Hover Branco) */
         .social-btn { 
-            width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; transition: 0.3s; 
-            border: 2px solid transparent;
+            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: rgba(255,255,255,0.7); transition: 0.3s; 
+            border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
         }
-        .social-btn.youtube { background: #E50914; }
-        .social-btn.whatsapp { background: #25d366; }
-        
         .social-btn:hover { 
-            background: #ffffff;
-            border-color: #ffffff;
-            transform: translateY(-3px); 
-            box-shadow: 0 0 20px rgba(255,255,255,0.8); 
+            background: white; color: var(--primary); border-color: white;
+            transform: translateY(-3px); box-shadow: 0 0 25px rgba(255,255,255,0.7); 
         }
-        .social-btn.youtube:hover { color: #E50914; }
-        .social-btn.whatsapp:hover { color: #25d366; }
+        
+        /* Pílula de Pagamento (Estilo da Imagem) */
+        .payment-pill { 
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; 
+            padding: 12px 35px; display: flex; gap: 20px; align-items: center; 
+        }
+        .payment-pill img { height: 22px; width: auto; filter: grayscale(100%) brightness(200%); opacity: 0.8; transition: 0.3s; }
+        .payment-pill:hover img { filter: grayscale(0%) brightness(100%); opacity: 1; }
 
-        .payment-pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; padding: 10px 30px; display: flex; gap: 15px; align-items: center; white-space: nowrap; overflow-x: auto; }
-        .payment-pill img { height: 25px; width: auto; background: white; padding: 3px; border-radius: 4px; }
-        .copyright-text { font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .voxo-credit a { color: #666; font-weight: bold; }
+        .copyright-text { font-weight: 700; color: white; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 1px; }
+        .voxo-credit { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .voxo-credit a { color: rgba(255,255,255,0.6); font-weight: bold; }
+        .voxo-credit a:hover { color: white; }
 
-        /* --- WHATSAPP FLOAT (HOVER BRANCO) --- */
+        /* --- WHATSAPP FLOAT (Hover Branco) --- */
         .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #25d366; color: white; 
-            width: 65px; height: 65px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
-            z-index: 999; animation: pulse 2s infinite; transition: 0.3s;
-            border: 2px solid transparent;
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+            z-index: 999; animation: pulse 2s infinite; transition: 0.3s; border: 2px solid transparent;
         }
-        .whatsapp-float:hover { 
-            background: #ffffff; 
-            color: #25d366; 
-            border-color: #ffffff;
-            box-shadow: 0 0 30px rgba(255,255,255,0.9);
-        }
+        .whatsapp-float:hover { background: white; color: #25d366; border-color: white; box-shadow: 0 0 40px rgba(255,255,255,0.8); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 900px) {
-            .hero-text h1 { font-size: 3rem; }
-            .hero-video-wrapper { max-width: 100%; }
+            :root { --section-spacing: 80px; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.1rem; }
+            .hero-video-wrapper { max-width: 90%; }
             
             /* CARROSSEL DE CANAIS AO VIVO (MOBILE) */
-            .live-channels-track {
-                display: flex;
-                gap: 20px;
-                width: max-content;
-                animation: scroll 30s linear infinite; 
-            }
-            
-            /* Ajuste de tamanho para 2 imagens por vez */
-            .live-icon {
-                min-width: 170px; /* Bem visível */
-                height: 140px; 
-                flex-shrink: 0;
-            }
-            .live-icon.dup { display: flex; } /* Ativa loop */
+            .live-channels-track { display: flex; gap: 20px; width: max-content; animation: scroll 30s linear infinite; }
+            .live-icon { min-width: 160px; height: 120px; flex-shrink: 0; }
+            .live-icon.dup { display: flex; } 
 
-            .steps-wrapper { flex-direction: column; }
-            .step-img-card { width: 85%; }
-            .footer-middle-row { flex-direction: column; }
-            .payment-pill { max-width: 100%; justify-content: center; } 
-            .pricing-grid { grid-template-columns: 1fr; }
-            .support-card { padding: 30px 20px; }
-            .whatsapp-btn-large { font-size: 0.9rem; padding: 15px 30px; }
+            .steps-wrapper { flex-direction: column; gap: 30px; }
+            .step-img-card { width: 80%; max-width: none; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
+            .price-card { min-width: auto; padding: 40px 30px; }
+            .price-card.featured { transform: scale(1); }
+            .footer-middle-row { flex-direction: column; gap: 30px; }
+            .support-card { padding: 40px 25px; }
+            .whatsapp-btn-large { font-size: 0.9rem; padding: 15px 30px; width: 100%; justify-content: center; }
         }
         
         @media (max-width: 768px) {
-            .nav-container { justify-content: space-between; }
-            .menu-toggle { display: block; }
-            .nav-menu { position: absolute; top: 80px; left: -100%; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); flex-direction: column; justify-content: start; padding-top: 50px; transition: 0.4s; }
+            .nav-menu { position: absolute; top: 70px; left: -100%; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); flex-direction: column; justify-content: center; transition: 0.4s; backdrop-filter: blur(20px); }
             .nav-menu.active { left: 0; }
-            .price-card.featured { transform: scale(1); }
-            .poster-card { width: 140px; }
+            .menu-toggle { display: block; }
+            .section-title { font-size: 2rem; }
+            .poster-card { width: 150px; }
+            .payment-pill { padding: 10px 20px; flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -387,7 +386,7 @@
                     <li><a href="#catalogo">Catálogo</a></li>
                     <li><a href="#beneficios">Benefícios</a></li>
                     <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#planos" class="btn-cta" style="padding: 10px 25px; font-size: 0.9rem; box-shadow:none;">Assinar</a></li>
+                    <li><a href="#planos" class="btn-cta" style="padding: 12px 30px; font-size: 0.9rem; box-shadow:none;">Assinar</a></li>
                 </ul>
             </nav>
         </div>
@@ -409,8 +408,27 @@
         </div>
     </section>
 
+    <section class="channels-section">
+        <div class="marquee">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney">
+        </div>
+    </section>
+
     <section id="catalogo" class="highlights">
-        <div class="container section-header">
+        <div class="container section-header center-header">
             <h2 class="section-title">Produções em <span>Destaque</span></h2>
             <p class="section-subtitle">Aproveite lançamentos dos cinemas e o melhor dos streamings.</p>
         </div>
@@ -455,7 +473,7 @@
     </section>
 
     <section class="live-section">
-        <div class="container section-header">
+        <div class="container section-header center-header">
             <h2 class="section-title">Não perca o melhor do <span>Ao Vivo</span></h2>
             <p class="section-subtitle">Notícias, esportes, documentários e muito mais já incluídos na plataforma.</p>
         </div>
@@ -484,7 +502,7 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-bottom: 60px;">
+        <div style="text-align: center; margin-bottom: 40px;">
             <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
 
@@ -522,22 +540,22 @@
     </section>
 
     <section id="beneficios" class="benefits">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Veja o que você terá com o <span>DezPila</span></h2>
+        <div class="container center-header">
+            <h2 class="section-title">Veja o que você terá com o <span>DezPila</span></h2>
             
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-ADS-2.png" alt="Sem Anúncios" class="benefit-icon">
+                <div class="generic-card benefit-card">
+                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-ADS-2.png" alt="Sem Anúncios" class="card-icon">
                     <h3>Sem anúncios</h3>
                     <p>Assista sem interrupções, sem anúncios chatos aparecendo na sua tela.</p>
                 </div>
-                <div class="benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-CLAQ-2-150x150-1.png" alt="Alta Resolução" class="benefit-icon">
+                <div class="generic-card benefit-card">
+                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-CLAQ-2-150x150-1.png" alt="Alta Resolução" class="card-icon">
                     <h3>Alta Resolução</h3>
                     <p>Assista conteúdos na melhor qualidade em FullHD e 4k.</p>
                 </div>
-                <div class="benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-BARAT-2-150x150-1.png" alt="Preço Baixo" class="benefit-icon">
+                <div class="generic-card benefit-card">
+                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-BARAT-2-150x150-1.png" alt="Preço Baixo" class="card-icon">
                     <h3>Só DezPila</h3>
                     <p>Pague por muito conteúdo, sem perder sua carteira.</p>
                 </div>
@@ -546,7 +564,7 @@
     </section>
 
     <section id="como-funciona" class="how-it-works">
-        <div class="container section-header">
+        <div class="container section-header center-header">
             <h2 class="section-title">Como <span>funciona?</span></h2>
         </div>
         
@@ -557,31 +575,31 @@
             </div>
 
             <div class="steps-grid">
-                <div class="step-item">
+                <div class="generic-card step-item">
                     <div class="step-number-icon">1</div>
                     <h4>Escolha seu Plano</h4>
                     <p>Selecione o pacote que melhor te atende abaixo.</p>
                 </div>
-                <div class="step-item">
+                <div class="generic-card step-item">
                     <div class="step-number-icon">2</div>
                     <h4>Receba no E-mail</h4>
                     <p>Ao assinar, você receberá via e-mail o link de instalação junto com login e senha.</p>
                 </div>
-                <div class="step-item">
+                <div class="generic-card step-item">
                     <div class="step-number-icon">3</div>
                     <h4>Só Assistir</h4>
                     <p>Instale o app, faça login e aproveite.</p>
                 </div>
             </div>
             
-            <div style="margin-top: 60px; text-align: center;">
+            <div style="margin-top: 80px; text-align: center;">
                 <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
             </div>
         </div>
     </section>
 
     <section id="planos" class="pricing">
-        <div class="container section-header">
+        <div class="container section-header center-header">
             <h2 class="section-title">Selecione o seu <span>plano</span></h2>
             <p class="section-subtitle">Diversão garantida pelo menor preço.</p>
         </div>
@@ -601,7 +619,7 @@
                         <li><i class="fas fa-check"></i> Canais adultos</li>
                         <li><i class="fas fa-check"></i> Suporte diário</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/lAsRbtaK" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid var(--primary); box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/lAsRbtaK" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
                 </div>
 
                 <div class="price-card featured">
@@ -610,7 +628,7 @@
                         <h3>DezPila Mensal 2 Telas</h3>
                         <p class="small-text">Acesso por 1 mês</p>
                     </div>
-                    <div class="price-value" style="color: var(--primary);">R$ 19<span>,00</span></div>
+                    <div class="price-value">R$ 19<span>,00</span></div>
                     <ul class="price-features">
                         <li><i class="fas fa-check"></i> Assista em até 2 Telas</li>
                         <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
@@ -634,7 +652,7 @@
                         <li><i class="fas fa-check"></i> Canais adultos</li>
                         <li><i class="fas fa-check"></i> Suporte diário</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/jSBaPOOv" target="_blank" class="btn-cta" style="background: transparent; border: 1px solid #555; box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/jSBaPOOv" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
                 </div>
 
                 <div class="price-card">
@@ -650,18 +668,18 @@
                         <li><i class="fas fa-check"></i> Canais adultos</li>
                         <li><i class="fas fa-check"></i> Suporte diário</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/ImOdBvgR" target="_blank" class="btn-cta" style="background: transparent; border: 1px solid #555; box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/ImOdBvgR" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="faq">
-        <div class="container section-header">
+        <div class="container section-header center-header">
             <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
         </div>
         
-        <div class="container faq-container">
+        <div class="container faq-container" style="max-width: 800px;">
             <div class="faq-item">
                 <div class="faq-question">
                     Preciso de algum aparelho específico? <i class="fas fa-chevron-down"></i>
@@ -698,7 +716,7 @@
                     <h2>Estamos sempre aqui para ajudar</h2>
                     <p>Ficou com alguma dúvida ou precisa de auxílio? Fale agora com nossa equipe.</p>
                     <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" class="whatsapp-btn-large">
-                        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> ENTRE EM CONTATO PELO WHATSAPP >
+                        <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> ENTRE EM CONTATO PELO WHATSAPP >
                     </a>
                 </div>
             </div>
@@ -758,12 +776,19 @@
             });
         });
 
-        // FAQ
+        // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
-                faqItems.forEach(i => { if(i !== item) i.classList.remove('active'); });
-                item.classList.toggle('active');
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => { 
+                    i.classList.remove('active'); 
+                    i.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    item.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
+                }
             });
         });
     </script>
