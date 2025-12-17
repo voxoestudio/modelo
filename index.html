@@ -3,347 +3,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DezPila</title>
-    
+    <title>DezPila - O Melhor Streaming</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        /* --- RESET GERAL --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            overflow-x: hidden;
+        /* ================= RESET & GLOBAL ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
         }
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: white; }
-        ul { list-style: none; }
 
-        /* --- VARIÁVEIS DE COR --- */
         :root {
-            --red-brand: #ff0000;
-            --red-dark: #cc0000;
-            --black-bg: #000000;
-            --white: #ffffff;
-            --gray-text: #cccccc;
+            --primary-red: #E50914; /* Vermelho Netflix/DezPila */
+            --dark-bg: #050505;
+            --text-white: #ffffff;
+            --gray-text: #b3b3b3;
+            --gradient-hero: radial-gradient(circle at center, rgba(168, 12, 23, 0.4) 0%, rgba(0,0,0,1) 70%);
         }
 
-        /* --- UTILITÁRIOS --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .text-center { text-align: center; }
-        .section-padding { padding: 60px 0; }
-        .red-text { color: var(--red-brand); }
-        .bold { font-weight: 700; }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efeito Granulado (Noise) no Fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
         /* Botão Padrão */
-        .btn-main {
-            background: linear-gradient(to bottom, #ff0000, #b30000);
+        .btn-cta {
+            background: linear-gradient(180deg, #FF0000 0%, #bd0000 100%);
             color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
             text-transform: uppercase;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            transition: transform 0.2s;
             display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+            margin-top: 20px;
         }
 
-        /* Títulos de Seção */
+        .btn-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* Titulos */
         .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
+            text-align: center;
+            font-size: 32px;
             font-weight: 800;
             margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .section-subtitle {
-            font-size: 14px;
-            color: #ccc;
-            margin-bottom: 40px;
         }
 
-        /* --- HEADER --- */
-        header {
-            background-color: rgba(0,0,0,0.8);
-            padding: 15px 0;
-            position: absolute;
-            width: 100%;
-            z-index: 10;
-            top: 0;
+        .section-title span {
+            color: var(--primary-red);
         }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 24px; }
-        .nav-links { display: flex; gap: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
 
-        /* --- HERO --- */
+        .logo img {
+            height: 35px;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 20px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-red);
+        }
+
+        /* ================= HERO SECTION ================= */
         .hero {
-            background: url('https://dezpilaoficial.com/wp-content/uploads/2025/12/fundo-vermelho-textura.jpg') no-repeat center center/cover; 
-            background-color: #800000;
             padding-top: 120px;
-            padding-bottom: 80px;
+            padding-bottom: 60px;
+            background: var(--gradient-hero), url('https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png'); /* Fallback texture */
+            background-blend-mode: overlay;
+            background-size: cover;
             text-align: center;
             position: relative;
         }
-        .hero::after {
-            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-            background: radial-gradient(circle, transparent 40%, black 100%);
-            pointer-events: none;
-        }
-        .hero-content { position: relative; z-index: 2; }
-        
+
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            font-weight: 800;
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.2;
             margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        .hero-image-wrapper {
-            margin: 0 auto 20px auto;
-            max-width: 600px;
-        }
-        .hero-image-wrapper img { border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero p { font-size: 14px; max-width: 600px; margin: 0 auto 30px auto; font-weight: 500; }
 
-        /* --- DESTAQUES --- */
-        .destaques { background-color: #000; }
-        .poster-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+        .hero h1 span {
+            color: white; /* "DEZ" is white based on image */
         }
-        .poster-card { width: 140px; transition: transform 0.3s ease; }
-        .poster-card:hover { transform: scale(1.05); }
-        .poster-card img { border-radius: 5px; width: 100%; height: auto; }
+        
+        .hero h1 span.highlight {
+            color: #b3b3b3; /* "PILA" darker gray/red effect in logo, simpler here */
+            color: inherit;
+        }
 
-        /* --- AO VIVO (ATUALIZADO) --- */
-        .ao-vivo { background-color: #000; padding-bottom: 0; /* Removido padding inferior para colar o carrossel */ }
-        .logos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+        .hero-tv-mockup {
+            margin: 40px auto;
+            max-width: 800px;
+            position: relative;
         }
-        .logo-box {
-            background: white;
-            border-radius: 8px;
-            height: 60px;
+        
+        /* Simulação da TV (Já que a URL específica da TV não foi fornecida, criamos uma estrutura visual) */
+        .tv-frame {
+            border: 10px solid #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255,0,0,0.2);
+            background: #000;
+            aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 5px;
-            transition: transform 0.3s ease;
+            position: relative;
         }
-        .logo-box:hover { transform: translateY(-3px); }
-        .logo-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        
+        .tv-frame::after {
+            content: "DEZPILA TV";
+            color: #333;
+            font-weight: 900;
+            font-size: 3rem;
+        }
+        
+        .tv-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
 
-        /* --- NOVO CARROSSEL SUAVE AO VIVO --- */
-        .continuous-carousel {
-            background: #0a0a0a; /* Fundo ligeiramente diferente para destacar */
-            padding: 25px 0;
-            margin-top: 50px;
+        /* ================= CARROSSEL DESTAQUE ================= */
+        .destaque {
+            padding: 50px 0;
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            width: 100%;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
-            border-top: 1px solid #222;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 40s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            width: 180px;
+            margin: 0 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
         }
         
-        /* Gradiente nas bordas para suavizar a entrada/saída */
-        .continuous-carousel::before,
-        .continuous-carousel::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
+        .marquee-item:hover {
+            transform: scale(1.05);
             z-index: 2;
         }
-        .continuous-carousel::before { left: 0; background: linear-gradient(to right, #000, transparent); }
-        .continuous-carousel::after { right: 0; background: linear-gradient(to left, #000, transparent); }
 
-        .carousel-track-smooth {
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ================= AO VIVO (GRID) ================= */
+        .ao-vivo {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        .channel-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 40px; /* Espaçamento entre os logos */
-            width: max-content;
-            animation: smoothScroll 35s linear infinite; /* Ajuste a velocidade (segundos) aqui */
+            justify-content: center;
+            height: 100px;
+            transition: transform 0.2s;
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-5px);
         }
 
-        .carousel-track-smooth img {
-            height: 40px; /* Altura fixa para os logos do carrossel */
+        .channel-card img {
+            max-height: 70px;
             width: auto;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            filter: grayscale(30%); /* Leve desaturação para não brigar com o resto */
-        }
-        /* Efeito hover opcional nos itens do carrossel */
-        .carousel-track-smooth img:hover {
-            opacity: 1;
-            filter: grayscale(0%);
+            object-fit: contain;
         }
 
-        @keyframes smoothScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Move exatamente metade (o conjunto original) */
-        }
-
-        /* --- MARQUEE DE SERVIÇOS (Original - mantido se necessário, mas o novo carrossel está acima) --- */
-        .services-bar {
-            background: #111;
-            padding: 15px 0;
+        /* ================= PLATAFORMAS (CARROSSEL MENOR) ================= */
+        .platforms {
+            padding: 20px 0 60px 0;
+            background: #000;
             border-top: 1px solid #222;
             border-bottom: 1px solid #222;
-            overflow: hidden;
-            white-space: nowrap;
         }
-        .services-track { display: flex; gap: 20px; justify-content: center; }
-        .services-track img { height: 30px; border-radius: 4px; opacity: 0.6; }
-
-        /* --- COMPATIBILIDADE --- */
-        .compatibilidade { background-color: #000; }
-        .comp-img { max-width: 700px; margin: 0 auto 30px auto; }
-
-        /* --- BENEFÍCIOS --- */
-        .beneficios { background-color: #000; }
-        .cards-red-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        
+        .platforms .marquee-item {
+            width: 100px;
+            margin: 0 20px;
+            vertical-align: middle;
         }
-        .card-red {
-            background-color: #ff0000;
-            width: 250px;
-            padding: 30px 20px;
-            border-radius: 15px;
+
+        /* ================= COMPATIBILIDADE ================= */
+        .compatibilidade {
+            padding: 80px 0;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(255,0,0,0.2);
-            transition: transform 0.3s ease;
         }
-        .card-red:hover { transform: translateY(-5px); }
-        .card-red i { font-size: 40px; margin-bottom: 15px; color: white; display: block; }
-        .card-red h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; margin-bottom: 10px; }
-        .card-red p { font-size: 12px; line-height: 1.4; }
 
-        /* --- COMO FUNCIONA --- */
-        .como-funciona { background-color: #000; }
+        .devices-mockup {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        
+        .devices-mockup img {
+            margin: 0 auto;
+        }
+
+        /* ================= FEATURES (VEJA O QUE TERA) ================= */
+        .features {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #FF0000;
+            padding: 30px 20px;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* ================= COMO FUNCIONA ================= */
+        .how-it-works {
+            padding: 60px 0;
+            text-align: center;
+        }
+
         .steps-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
             align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
-        .step-img { max-width: 300px; border-radius: 10px; }
 
-        /* --- PLANOS --- */
-        .planos { background-color: #000; padding-bottom: 80px; }
+        .step-form-mockup {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+        }
+        
+        .mock-input {
+            height: 35px;
+            background: #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .mock-btn {
+            height: 40px;
+            background: #FF0000;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .step-info {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .step-item {
+            margin-bottom: 20px;
+        }
+        .step-item h4 { color: var(--primary-red); margin-bottom: 5px; }
+
+        /* ================= PLANOS ================= */
+        .plans {
+            padding: 60px 0;
+            text-align: center;
+        }
+
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 40px auto;
         }
+
         .plan-card {
             background: white;
-            color: #000;
+            color: #333;
             border-radius: 15px;
-            padding: 30px 20px;
+            padding: 30px;
             text-align: center;
             position: relative;
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .plan-card:hover { transform: scale(1.02); }
-        .plan-title { font-weight: 800; font-size: 16px; margin-bottom: 5px; font-family: 'Montserrat', sans-serif; }
-        .plan-period { font-size: 12px; color: #666; margin-bottom: 15px; text-transform: uppercase; }
-        .plan-price { font-size: 40px; font-weight: 900; color: #cc0000; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .btn-plan {
-            background: linear-gradient(to bottom, #cc0000, #990000);
-            color: white;
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
+
+        .plan-title {
+            font-size: 18px;
             font-weight: 700;
-            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 40px;
+            color: var(--primary-red);
+            font-weight: 900;
+            margin: 15px 0;
+        }
+
+        .plan-period {
             font-size: 14px;
+            color: #666;
             margin-bottom: 20px;
-            display: block;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            transition: background 0.3s ease;
         }
-        .btn-plan:hover { background: linear-gradient(to bottom, #ff0000, #cc0000); }
-        .plan-list { text-align: left; font-size: 13px; line-height: 2.2; color: #333; list-style: none; padding: 0 10px; }
-        .plan-list li { display: flex; align-items: center; }
-        .plan-list li i { color: #cc0000; margin-right: 10px; font-size: 12px; }
 
-        /* --- FOOTER --- */
-        .support-section {
-            background: #fff;
-            color: #000;
-            padding: 40px 0;
-            text-align: center;
-            margin-top: 50px;
+        .plan-features {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 14px;
         }
-        .support-section h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 10px; }
-        .support-section p { font-size: 14px; margin-bottom: 20px; }
-        .btn-whatsapp {
-            background-color: #25d366;
+
+        .plan-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .plan-features li i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        .btn-plan {
+            width: 100%;
+            background: linear-gradient(180deg, #cc0000 0%, #990000 100%);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* ================= FAQ & FOOTER ================= */
+        .faq {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: #1a1a1a;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .footer-support {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #333;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 700;
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            margin-top: 20px;
             text-transform: uppercase;
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 13px;
-            transition: background-color 0.3s ease;
         }
-        .btn-whatsapp:hover { background-color: #1ebd5b; }
 
-        .main-footer {
-            background: #000;
-            padding: 40px 0;
+        footer {
             text-align: center;
-            border-top: 1px solid #222;
+            padding: 20px;
+            font-size: 12px;
+            color: #666;
+            background: #000;
         }
-        .footer-icons { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .footer-icon { background: #eee; width: 30px; height: 20px; border-radius: 2px; }
-        .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 24px; color: white; margin-bottom: 10px; }
-        .footer-copy { font-size: 12px; color: #666; margin-top: 20px; }
+        
+        .payment-methods {
+            margin-top: 10px;
+        }
+        
+        .payment-methods i {
+            font-size: 24px;
+            margin: 0 5px;
+            color: #fff;
+        }
 
-        /* Responsividade */
+        /* ================= RESPONSIVO (MOBILE) ================= */
         @media (max-width: 768px) {
-            .plans-grid { grid-template-columns: 1fr; }
-            .logos-grid { grid-template-columns: repeat(3, 1fr); }
-            .poster-grid { flex-wrap: wrap; }
-            .steps-container { flex-direction: column; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 24px; }
-            .section-title { font-size: 22px; }
+            .hero h1 { font-size: 28px; }
             
-            /* Ajuste do carrossel no mobile */
-            .carousel-track-smooth { gap: 25px; }
-            .carousel-track-smooth img { height: 30px; }
+            .channels-grid {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 20px;
+                gap: 10px;
+            }
+            .channel-card {
+                min-width: 120px;
+                flex-shrink: 0;
+            }
+            
+            .features-grid { grid-template-columns: 1fr; }
+            
+            .steps-container { flex-direction: column; }
+            
+            .plans-grid { grid-template-columns: 1fr; }
+            
+            .header-content { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -351,165 +540,186 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo-text">DEZ<span style="font-weight: 300;">PILA</span></div>
-            <div class="nav-links">
-                <a href="#">INÍCIO</a>
-                <a href="#">PLANOS</a>
-                <a href="#">CANAIS</a>
-                <a href="#">CONTATO</a>
-            </div>
+            <a href="#" class="logo">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="#inicio">Início</a>
+                <a href="#destaques">Destaques</a>
+                <a href="#planos">Planos</a>
+                <a href="#duvidas">Dúvidas</a>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Você só precisa de DEZ<span style="font-weight: 300;">PILA</span></h1>
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Você só precisa de <span>DEZPILA</span></h1>
+            <p class="section-subtitle">Filmes que acabaram de sair do cinema, séries exclusivas e canais ao vivo.<br>Tudo em um só lugar, pagando pouco e assistindo muito.</p>
             
-            <div class="hero-image-wrapper">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tela-dez-pela.png" alt="Tela DezPila">
+            <div class="hero-tv-mockup">
+                <div class="tv-frame">
+                   <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" style="opacity: 0.5; filter: blur(2px);">
+                </div>
+                <p style="margin-top: 10px; font-size: 14px; color: #ccc;">A melhor experiência de streaming começa agora.</p>
             </div>
 
-            <p>Filmes que acabaram de sair do cinema, séries exclusivas e canais ao vivo. Tudo em um só lugar.</p>
-            
-            <a href="#planos" class="btn-main">ASSINAR AGORA</a>
+            <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
 
-    <section class="section-padding destaques">
-        <div class="container text-center">
-            <h2 class="section-title">Produções em <span class="red-text">Destaque</span></h2>
-            <p class="section-subtitle">As preferidas dos assinantes e os melhores documentários.</p>
-            
-            <div class="poster-grid">
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/u3bZgnGQ9T01sWNhyve4z0wFCbV.jpg" alt="Poster 1"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Poster 2"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/dzBTM9Haf071kY2EVDG83NajY98.jpg" alt="Poster 3"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/1QPO9XU1aMms305Ew0X511i578.jpg" alt="Poster 4"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Poster 5"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="Poster 6"></div>
-            </div>
+    <section class="destaque" id="destaques">
+        <div class="container">
+            <h2 class="section-title">Produções em <span>Destaque</span></h2>
+            <p class="section-subtitle">Aproveite lançamentos direto do cinema e o melhor conteúdo dos streamings.</p>
         </div>
-    </section>
-
-    <section class="section-padding ao-vivo">
-        <div class="container text-center">
-            <h2 class="section-title">Não perca o melhor do <span class="red-text">Ao Vivo</span></h2>
-            <p class="section-subtitle">Notícias, esportes, entretenimento e muito mais para toda a família.</p>
-            
-            <div class="logos-grid">
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT"></div>
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier League"></div>
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA"></div>
-                
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix"></div>
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png" alt="History"></div>
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png" alt="HBO"></div>
-                
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png" alt="Fox Sports"></div> 
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN"></div>
-                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png" alt="Animal Planet"></div>
-            </div>
-
-            <a href="#planos" class="btn-main">ASSINAR AGORA</a>
-
-        </div>
-
-        <div class="continuous-carousel">
-            <div class="carousel-track-smooth">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime Video">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" alt="Paramount+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" alt="Hulu">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" alt="Crunchyroll">
-                
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime Video">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" alt="Paramount+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" alt="Hulu">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney+">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" alt="Crunchyroll">
+        
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_d0a38bfd64f04e1b8921c713c7205f4dmv2-rfog2lcyk63nwdwznr5i9s5kz2e6y2jybnmbm97ftu.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_c35071ddac1d4c67ab014969fa7f155fmv2-rfog1u3n1z2cjp0l2xdbrh17qw4jqujqjwp8p8buua.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_b5e39379f43b40a487d3be87d3c67e87mv2-rfog2zgjeomyqjcidf8wt6lhvugp5j3xdleltemj8i.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_a31623cd305742cf93b9428fc5734fffmv2-rfog20oidtbcsyr10i7pqxdfwl848q9uwt9n2623mq.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_8920ae9ff1d645cab037bc30c7a2c54cmv2-rfog26bjitj2qmiu3knh5vy7gwgbiww8xl6jxttqle.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_835c6518f1004fb89e8060b77b2d224dmv2-rfog1wx5mh67iiwhmgl7gyblj1qndxuxkanp527obm.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_d0a38bfd64f04e1b8921c713c7205f4dmv2-rfog2lcyk63nwdwznr5i9s5kz2e6y2jybnmbm97ftu.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_c35071ddac1d4c67ab014969fa7f155fmv2-rfog1u3n1z2cjp0l2xdbrh17qw4jqujqjwp8p8buua.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_b5e39379f43b40a487d3be87d3c67e87mv2-rfog2zgjeomyqjcidf8wt6lhvugp5j3xdleltemj8i.png" class="marquee-item">
             </div>
         </div>
     </section>
 
-    <section class="section-padding compatibilidade">
-        <div class="container text-center">
-            <h2 class="section-title">Alta <span class="red-text">compatibilidade</span></h2>
-            <p class="section-subtitle">Assista em qualquer dispositivo, em qualquer lugar.</p>
-            
-            <div class="comp-img">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/mockup-dez-pela.png" alt="Dispositivos Compatíveis">
+    <section class="ao-vivo">
+        <div class="container">
+            <h2 class="section-title">Não perca o melhor do <span>Ao Vivo</span></h2>
+            <p class="section-subtitle">Notícias, esportes, documentários e entretenimento em tempo real.</p>
+
+            <div class="channels-grid">
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png" alt="HBO"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png" alt="Animal Planet"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png" alt="History"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png" alt="Fox"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT"></div>
             </div>
 
-            <a href="#planos" class="btn-main">ASSINAR AGORA</a>
+            <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
 
-    <section class="section-padding beneficios">
-        <div class="container text-center">
-            <h2 class="section-title">Veja o que você terá com o <span class="red-text">DezPila</span></h2>
-            <br>
-            <div class="cards-red-grid">
-                <div class="card-red">
-                    <i class="fas fa-ban"></i>
+    <section class="platforms">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" class="marquee-item">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" class="marquee-item">
+            </div>
+        </div>
+    </section>
+
+    <section class="compatibilidade">
+        <div class="container">
+            <h2 class="section-title">Alta <span>Compatibilidade</span></h2>
+            <p class="section-subtitle">Assista de onde quiser, quando quiser.</p>
+            
+            <div class="devices-mockup">
+                <div style="font-size: 80px; color: #333; display: flex; justify-content: center; gap: 30px; margin: 40px 0;">
+                    <i class="fas fa-mobile-alt"></i>
+                    <i class="fas fa-desktop"></i>
+                    <i class="fas fa-tv"></i>
+                 </div>
+                 <p>Celular • Computador • Smart TV • TV Box</p>
+            </div>
+            
+            <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Veja o que você terá com o <span>DezPila</span></h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-ban"></i></div>
                     <h3>Sem anúncios</h3>
                     <p>Assista sem interrupções, sem anúncios chatos aparecendo na sua tela.</p>
                 </div>
-                <div class="card-red">
-                    <i class="fas fa-film"></i>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-film"></i></div>
                     <h3>Alta Resolução</h3>
-                    <p>Assista conteúdos na melhor qualidade em FullHD e 4k.</p>
+                    <p>Assista conteúdos na melhor qualidade em FullHD e 4K.</p>
                 </div>
-                <div class="card-red">
-                    <i class="fas fa-tag"></i>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-wallet"></i></div>
                     <h3>Só DezPila</h3>
                     <p>Pague por muito conteúdo, sem perder sua carteira.</p>
                 </div>
             </div>
-            <br><br>
-            <a href="#planos" class="btn-main">ASSINAR AGORA</a>
+            
+            <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
 
-    <section class="section-padding como-funciona">
-        <div class="container text-center">
-            <h2 class="section-title">Como <span class="red-text">funciona?</span></h2>
-            <p class="section-subtitle">Acesso ao DezPila é simples e em poucos passos para você curtir a programação o quanto antes no sua conta.</p>
-
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como <span>funciona?</span></h2>
+            <p class="section-subtitle">Simples, rápido e sem burocracia.</p>
+            
             <div class="steps-container">
-                <div class="step">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tela-dez-pela.png" class="step-img" alt="Tela 1">
+                <div class="step-form-mockup">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" width="80" style="margin-bottom: 10px;">
+                    <div class="mock-input"></div>
+                    <div class="mock-input"></div>
+                    <div class="mock-btn"></div>
                 </div>
-                <div class="step">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/check02.png" class="step-img" alt="Tela 2">
+
+                <div class="step-info">
+                    <div class="step-item">
+                        <h4>Escolha seu Plano</h4>
+                        <p>Selecione o pacote que melhor te atende abaixo.</p>
+                    </div>
+                    <div class="step-item">
+                        <h4>Receba no E-mail</h4>
+                        <p>Ao assinar, você receberá via e-mail o link de instalação junto com login e senha.</p>
+                    </div>
+                    <div class="step-item">
+                        <h4>Só Assistir</h4>
+                        <p>Instale o app, faça login e aproveite.</p>
+                    </div>
                 </div>
             </div>
-            
-            <a href="#planos" class="btn-main">ASSINAR AGORA</a>
         </div>
     </section>
 
-    <section id="planos" class="section-padding planos">
-        <div class="container text-center">
-            <h2 class="section-title">Selecione o seu plano:</h2>
-            <br>
-            
+    <section class="plans" id="planos">
+        <div class="container">
+            <h2 class="section-title">Selecione o <span>seu plano:</span></h2>
+            <p class="section-subtitle">Diversão garantida pelo menor preço.</p>
+
             <div class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-title">DezPila Mensal 1 Tela</div>
                     <div class="plan-period">Acesso por 1 mês</div>
                     <div class="plan-price">R$ 10,00</div>
-                    <a href="#" class="btn-plan">ASSINAR AGORA</a>
-                    <ul class="plan-list">
+                    <button class="btn-cta btn-plan">ASSINAR AGORA</button>
+                    <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Assista em até 1 Tela</li>
                         <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
                         <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
@@ -519,11 +729,12 @@
                 </div>
 
                 <div class="plan-card">
+                    <div style="background:#000; color:white; font-size:10px; padding:2px 8px; border-radius:3px; position:absolute; top:-10px; right: 20px;">MAIS VENDIDO</div>
                     <div class="plan-title">DezPila Mensal 2 Telas</div>
                     <div class="plan-period">Acesso por 1 mês</div>
                     <div class="plan-price">R$ 19,00</div>
-                    <a href="#" class="btn-plan">ASSINAR AGORA</a>
-                    <ul class="plan-list">
+                    <button class="btn-cta btn-plan">ASSINAR AGORA</button>
+                    <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Assista em até 2 Telas</li>
                         <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
                         <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
@@ -533,11 +744,11 @@
                 </div>
 
                 <div class="plan-card">
-                    <div class="plan-title">DezPila Trimestral 2 Telas</div>
+                    <div class="plan-title">Trimestral 2 Telas</div>
                     <div class="plan-period">Acesso por 3 meses</div>
                     <div class="plan-price">R$ 50,00</div>
-                    <a href="#" class="btn-plan">ASSINAR AGORA</a>
-                    <ul class="plan-list">
+                    <button class="btn-cta btn-plan">ASSINAR AGORA</button>
+                    <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Assista em até 2 Telas</li>
                         <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
                         <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
@@ -547,11 +758,11 @@
                 </div>
 
                 <div class="plan-card">
-                    <div class="plan-title">DezPila Trimestral 4 Telas</div>
+                    <div class="plan-title">Trimestral 4 Telas</div>
                     <div class="plan-period">Acesso por 3 meses</div>
                     <div class="plan-price">R$ 90,00</div>
-                    <a href="#" class="btn-plan">ASSINAR AGORA</a>
-                    <ul class="plan-list">
+                    <button class="btn-cta btn-plan">ASSINAR AGORA</button>
+                    <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Assista em até 4 Telas</li>
                         <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
                         <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
@@ -563,28 +774,48 @@
         </div>
     </section>
 
-    <div class="support-section">
+    <section class="faq" id="duvidas">
         <div class="container">
-            <h3>Estamos sempre aqui para ajudar, entre em contato<br>com nossa equipe de suporte:</h3>
-            <br>
-            <a href="#" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> ENTRE EM CONTATO PELO WHATSAPP ></a>
-        </div>
-    </div>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-logo">DEZPILA</div>
-            <p style="font-size: 14px; color: #fff;">DezPila, o melhor streaming desde 2023, com alto nível de satisfação dos clientes.</p>
+            <h2 class="section-title">Dúvidas Frequentes</h2>
             
-            <div class="footer-icons">
-                <div class="footer-icon"></div>
-                <div class="footer-icon"></div>
-                <div class="footer-icon"></div>
-                <div class="footer-icon"></div>
-                <div class="footer-icon"></div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4>Preciso de algum aparelho específico?</h4>
+                    <p style="color:#999; font-size:14px; margin-top:5px;">Não. Funciona em diversos dispositivos compatíveis.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Como recebo meu login?</h4>
+                    <p style="color:#999; font-size:14px; margin-top:5px;">Após a compra, você recebe tudo no seu e-mail.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>A plataforma trava?</h4>
+                    <p style="color:#999; font-size:14px; margin-top:5px;">A experiência é estável e otimizada para qualidade máxima.</p>
+                </div>
             </div>
-            
-            <p class="footer-copy">DezPila © 2023 - Todos os Direitos Reservados</p>
+
+            <div class="footer-support">
+                <h3 style="font-size: 20px;">Estamos sempre aqui para ajudar</h3>
+                <p style="color:#999; margin-top:10px;">Ficou com alguma dúvida ou precisa de auxílio? Nossa equipe está pronta para te atender.</p>
+                
+                <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp" style="font-size:20px;"></i> ENTRE EM CONTATO PELO WHATSAPP
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" width="100" style="margin: 0 auto 20px auto; opacity: 0.7;">
+            <p>DezPila, o melhor streaming desde 2023, com alto nível de satisfação dos clientes.</p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fas fa-barcode"></i>
+                <i class="fas fa-qrcode"></i>
+            </div>
+            <p style="margin-top:20px;">&copy; 2025 DezPila TV. Todos os direitos reservados.</p>
         </div>
     </footer>
 
