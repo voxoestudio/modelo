@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE DESIGN SYSTEM --- */
+        /* --- CORE DESIGN SYSTEM (Ultra Dark) --- */
         :root {
             --red: #E50914; /* Vermelho Netflix */
             --black: #000000;
-            --dark-surface: #101010; /* Cinza HBO */
+            --dark-surface: #101010;
             --border: #333333;
             --text-main: #FFFFFF;
             --text-dim: #B3B3B3;
@@ -33,6 +33,14 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            /* Textura de ruído (Noise) para aspecto de cinema */
+            position: relative;
+        }
+        
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; color: white; }
@@ -50,7 +58,7 @@
             padding: 18px 45px;
             font-size: 1.1rem;
             font-weight: 700;
-            border-radius: 4px; /* Cantos retos estilo streaming */
+            border-radius: 4px;
             text-transform: uppercase;
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             cursor: pointer;
@@ -67,13 +75,13 @@
         /* --- HEADER --- */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-            padding: 25px 0;
-            transition: 0.3s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
         }
-        header.scrolled { background: #000; border-bottom: 1px solid #222; padding: 15px 0; }
         
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { display: flex; justify-content: center; align-items: center; gap: 50px; }
         .logo img { height: 45px; }
         
         .nav-menu { display: flex; gap: 30px; align-items: center; }
@@ -82,38 +90,41 @@
         
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
 
-        /* --- HERO (PÔSTERES DE FUNDO) --- */
+        /* --- HERO (WALLPAPER DE FILMES) --- */
         .hero {
             height: 100vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 80%, #000 100%), 
-                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8efe85?q=80&w=1920&auto=format&fit=crop');
+            /* Imagem de Fundo (Wall of Movies) + Overlay Escuro */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1920&auto=format&fit=crop'); 
             background-size: cover; background-position: center;
             padding-top: 80px; border-bottom: none;
         }
-        .hero-content { max-width: 850px; padding: 0 20px; animation: fadeInUp 1s ease; }
-        .hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1; }
+        .hero-content { max-width: 900px; padding: 0 20px; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1.1; text-transform: uppercase; }
         .hero h1 span { color: var(--red); }
-        .hero p { font-size: 1.5rem; margin-bottom: 40px; color: #f0f0f0; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .hero p { font-size: 1.4rem; margin-bottom: 40px; color: #f0f0f0; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+        .hero .highlight-text { font-weight: 800; font-size: 1.6rem; display: block; margin-top: 10px; margin-bottom: 40px; color: white; }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- VÍDEO SHOWCASE (ESTILO TRAILER) --- */
-        .video-section { padding: 80px 0; background: #000; text-align: center; }
-        .video-container {
-            max-width: 900px; margin: 0 auto;
-            border: 1px solid #333; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 0 60px rgba(229, 9, 20, 0.1); /* Glow vermelho sutil */
-        }
-        .video-container video { width: 100%; display: block; }
-        .video-text { margin-top: 40px; }
 
         /* --- MARQUEE --- */
         .marquee-section { padding: 30px 0; background: var(--dark-surface); border-top: 1px solid #222; overflow: hidden; }
         .marquee-track { display: flex; gap: 50px; width: max-content; animation: scroll 40s linear infinite; }
-        .marquee-track img { height: 45px; filter: grayscale(100%) opacity(0.6); transition: 0.3s; }
-        .marquee-track img:hover { filter: grayscale(0%) opacity(1); }
+        .marquee-track img { height: 45px; filter: grayscale(0%); opacity: 1; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- SEÇÃO VÍDEO (NOVA) --- */
+        .video-section { padding: 80px 0; background: #000; text-align: center; }
+        .video-container {
+            max-width: 900px; margin: 0 auto;
+            border: 1px solid #333; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 80px rgba(0,0,0,0.9);
+            position: relative;
+        }
+        .video-container:hover { border-color: rgba(255,255,255,0.3); }
+        .video-container video { width: 100%; display: block; }
+        .video-text { margin-top: 40px; }
 
         /* --- DESTAQUES --- */
         .section-header { text-align: center; margin-bottom: 60px; }
@@ -137,14 +148,17 @@
         }
         .channel-card {
             background: #1a1a1a; border: 1px solid #333; border-radius: 8px; height: 120px;
-            display: flex; align-items: center; justify-content: center; transition: 0.3s; padding: 20px;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s; padding: 10px;
         }
         .channel-card:hover { background: white; border-color: white; transform: translateY(-5px); }
-        .channel-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .channel-card img { max-width: 90%; max-height: 90%; object-fit: contain; }
         .channel-card.dup { display: none; }
 
+        .platforms-marquee { padding: 20px 0; background: transparent; overflow: hidden; margin-bottom: 30px; }
+
         /* --- ALTA COMPATIBILIDADE --- */
-        .compatibility { text-align: center; }
+        .compatibility { text-align: center; background: linear-gradient(to bottom, var(--dark-surface), #000); }
+        .comp-list { font-weight: 700; color: white; margin: 10px 0 20px; font-size: 1.2rem; }
         .comp-img { margin: 50px auto; max-width: 100%; filter: drop-shadow(0 0 30px rgba(255,255,255,0.1)); }
 
         /* --- BENEFÍCIOS --- */
@@ -158,25 +172,24 @@
         .benefit-card:hover { border-color: white; transform: translateY(-5px); }
         .benefit-card img { height: 80px; margin: 0 auto 20px; }
 
-        /* --- COMO FUNCIONA (Estilo Visual do Print) --- */
+        /* --- COMO FUNCIONA --- */
         .how-it-works { background: linear-gradient(to bottom, #000, #111); text-align: center; }
         
         .hw-visuals {
             display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 60px;
             flex-wrap: wrap;
         }
-        /* Ajuste das imagens para parecerem "conectadas" */
-        .hw-img-screen { width: 400px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .hw-img-check { width: 320px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); margin-top: 40px; } /* Efeito de sobreposição visual */
+        .hw-img-screen { width: 400px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .hw-img-check { width: 320px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); margin-top: 40px; }
 
         .hw-steps-grid { 
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; 
         }
         .hw-step { background: #1a1a1a; padding: 30px; border-radius: 8px; border: 1px solid #333; text-align: left; }
         .hw-step:hover { border-color: white; }
-        .hw-num { font-size: 3rem; font-weight: 900; color: var(--red); opacity: 0.5; margin-bottom: 10px; }
+        .hw-num { font-size: 3rem; font-weight: 900; color: var(--red); opacity: 0.8; margin-bottom: 10px; }
 
-        /* --- PLANOS (Estilo HBO - Clean) --- */
+        /* --- PLANOS --- */
         .plans-section { background: #000; }
         .plans-grid { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
@@ -209,6 +222,7 @@
 
         /* --- SUPORTE --- */
         .support { text-align: center; padding: 80px 0; background: linear-gradient(to bottom, #000, #0a0a0a); }
+        .support-box { background: #141414; border: 1px solid #333; padding: 50px; border-radius: 12px; max-width: 800px; margin: 0 auto; }
         .btn-whatsapp-lg {
             background: #25d366; color: white; padding: 18px 40px; border-radius: 50px;
             font-weight: 700; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem;
@@ -216,33 +230,31 @@
         }
         .btn-whatsapp-lg:hover { background: white; color: #25d366; }
 
-        /* --- FOOTER (Layout do Print) --- */
+        /* --- FOOTER --- */
         footer { 
             background: #000; padding: 80px 0 40px; text-align: center; border-top: 1px solid #222; 
         }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .footer-logo-img { height: 40px; margin-bottom: 10px; }
         .footer-desc { max-width: 600px; margin: 0 auto; color: #666; font-size: 0.9rem; }
         
-        /* Container Centralizado: Social + Pagamento */
         .footer-row-center {
             display: flex; align-items: center; justify-content: center; gap: 30px; margin: 20px 0;
             flex-wrap: wrap;
         }
         
-        .social-icons { display: flex; gap: 15px; }
         .social-btn {
-            width: 40px; height: 40px; background: #222; border-radius: 8px; 
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;
+            width: 45px; height: 45px; background: #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem;
             transition: 0.3s;
         }
-        .social-btn.yt { background: #ff0000; }
         .social-btn:hover { background: white; color: black; }
 
         .payment-pill {
-            background: #111; border: 1px solid #333; border-radius: 50px; padding: 8px 25px;
-            display: flex; align-items: center; gap: 15px;
+            background: #111; border: 1px solid #333; border-radius: 50px; padding: 10px 30px;
+            display: flex; align-items: center; gap: 20px;
         }
-        .payment-pill img { height: 18px; background: white; padding: 2px; border-radius: 2px; }
+        .payment-pill img { height: 22px; background: white; padding: 2px; border-radius: 2px; }
 
         .copyright { font-weight: 700; color: white; font-size: 0.9rem; }
         .voxo-credit { font-size: 0.8rem; color: #444; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
@@ -252,7 +264,8 @@
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 900px) {
             .hero { padding-top: 120px; }
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .nav-container { justify-content: space-between; }
             .nav-menu { display: none; }
             .menu-toggle { display: block; }
             .nav-menu.active { 
@@ -260,8 +273,9 @@
                 background: #000; padding: 30px; border-bottom: 1px solid #333; 
             }
             
-            .live-grid { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; }
-            .channel-card { min-width: 150px; height: 100px; flex-shrink: 0; }
+            /* Ajuste Ao Vivo Mobile */
+            .live-grid { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; scroll-snap-type: x mandatory; }
+            .channel-card { min-width: 160px; height: 110px; flex-shrink: 0; scroll-snap-align: start; }
             .channel-card.dup { display: flex; }
             
             .hw-visuals { flex-direction: column; }
@@ -270,6 +284,7 @@
             
             .plans-grid { grid-template-columns: 1fr; }
             .footer-row-center { flex-direction: column; gap: 20px; }
+            .payment-pill { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -278,7 +293,7 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila Oficial Logo">
             </div>
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             <nav class="nav-menu">
@@ -294,7 +309,7 @@
         <div class="container hero-content">
             <h1>Você só precisa de <br><span>DEZPILA</span></h1>
             <p>Filmes que acabaram de sair do cinema, séries exclusivas e canais ao vivo. Tudo em um só lugar, pagando pouco e assistindo muito.</p>
-            <p style="font-weight: 700; color: white; margin-top: -30px; margin-bottom: 40px;">A melhor experiência de streaming começa agora.</p>
+            <span class="highlight-text" style="display:block; font-size:1.5rem; font-weight:700; color:white; margin-bottom:40px;">A melhor experiência de streaming começa agora.</span>
             <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
@@ -340,8 +355,8 @@
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_46a7b9829517437598f3fd4805a37530mv2-rfog2hllstyily2g9pizzt3qliwq3a50z50dp5d0iq.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_35a6fbc749ff40c5b5ae06f832753f31mv2-rfog2bykntqsoaan6n38kuiz17oit3imyd3gthldk2.png" class="poster">
                     <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9da5689adac04f94a0438377456ae6damv2-rfog2p4bbi8t6trj1ss0jr7fclvnsuyvo689jd1v4y.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="poster">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9bc3167dcc0d4416b29d65fad5f02be4mv2-rfog2vp6nchtg3hyzdmej7jniaz8aqp012snwas3xe.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_6a69333d748d45b592417aa139def4f4mv2-1-rfog29523bmxpgeqn3vcvd8l922f607fxz50dnpk2q-1.png" class="poster">
                 </div>
             </div>
         </div>
@@ -374,9 +389,10 @@
                 <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
             </div>
 
-            <div class="marquee-section" style="background: transparent; border: none;">
+            <div class="platforms-marquee">
                 <div class="marquee-track">
-                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png">
                 </div>
             </div>
         </div>
@@ -386,9 +402,9 @@
         <div class="container comp-content">
             <h2>Alta <span>Compatibilidade</span></h2>
             <p>Assista de onde quiser, quando quiser.</p>
-            <p style="font-weight: 700; color: white;">Celular • Computador • Smart TV • TV Box</p>
+            <p class="comp-list">Celular • Computador • Smart TV • TV Box</p>
             <p>Sem complicação, sem limitações.</p>
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/mockup-dez-pela.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/mockup-dez-pela.png" class="comp-img">
             <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
@@ -477,7 +493,7 @@
                 </div>
 
                 <div class="plan-card featured">
-                    <div style="background:var(--red); color:white; padding:5px 15px; border-radius:50px; font-weight:700; font-size:0.8rem; width:fit-content; margin-bottom:10px;">MAIS VENDIDO</div>
+                    <div class="featured-tag">MAIS VENDIDO</div>
                     <h3 class="plan-name">DezPila Mensal 2 Telas</h3>
                     <p>Acesso por 1 mês</p>
                     <div class="plan-price">R$ 19<span>,00</span></div>
@@ -581,7 +597,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" style="position:fixed; bottom:20px; right:20px; z-index:999; width:60px; height:60px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 20px rgba(0,0,0,0.5); color:white; font-size:30px; border:2px solid transparent; transition:0.3s;" onmouseover="this.style.background='white'; this.style.color='#25d366'; this.style.borderColor='white';" onmouseout="this.style.background='#25d366'; this.style.color='white'; this.style.borderColor='transparent';">
+    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" class="float-wa">
         <i class="fab fa-whatsapp"></i>
     </a>
 
