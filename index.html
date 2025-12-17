@@ -17,16 +17,16 @@
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: 'Roboto', sans-serif; /* Fonte corpo padrão da imagem */
+            font-family: 'Roboto', sans-serif;
             overflow-x: hidden;
         }
         img { max-width: 100%; display: block; }
         a { text-decoration: none; color: white; }
         ul { list-style: none; }
 
-        /* --- VARIÁVEIS DE COR DA IMAGEM --- */
+        /* --- VARIÁVEIS DE COR --- */
         :root {
-            --red-brand: #ff0000; /* Vermelho vivo do DezPila */
+            --red-brand: #ff0000;
             --red-dark: #cc0000;
             --black-bg: #000000;
             --white: #ffffff;
@@ -40,7 +40,7 @@
         .red-text { color: var(--red-brand); }
         .bold { font-weight: 700; }
 
-        /* Botão Padrão (Gradiente Vermelho) */
+        /* Botão Padrão */
         .btn-main {
             background: linear-gradient(to bottom, #ff0000, #b30000);
             color: white;
@@ -54,6 +54,11 @@
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
             display: inline-block;
             font-family: 'Montserrat', sans-serif;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
         }
 
         /* Títulos de Seção */
@@ -74,7 +79,7 @@
         header {
             background-color: rgba(0,0,0,0.8);
             padding: 15px 0;
-            position: absolute; /* Sobreposto ao hero */
+            position: absolute;
             width: 100%;
             z-index: 10;
             top: 0;
@@ -89,15 +94,13 @@
 
         /* --- HERO --- */
         .hero {
-            /* Fundo texturizado vermelho simulação */
             background: url('https://dezpilaoficial.com/wp-content/uploads/2025/12/fundo-vermelho-textura.jpg') no-repeat center center/cover; 
-            background-color: #800000; /* Fallback */
+            background-color: #800000;
             padding-top: 120px;
             padding-bottom: 80px;
             text-align: center;
             position: relative;
         }
-        /* Máscara preta para simular o vignette da imagem */
         .hero::after {
             content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
             background: radial-gradient(circle, transparent 40%, black 100%);
@@ -127,11 +130,12 @@
             gap: 15px;
             flex-wrap: wrap;
         }
-        .poster-card { width: 140px; }
+        .poster-card { width: 140px; transition: transform 0.3s ease; }
+        .poster-card:hover { transform: scale(1.05); }
         .poster-card img { border-radius: 5px; width: 100%; height: auto; }
 
-        /* --- AO VIVO --- */
-        .ao-vivo { background-color: #000; }
+        /* --- AO VIVO (ATUALIZADO) --- */
+        .ao-vivo { background-color: #000; padding-bottom: 0; /* Removido padding inferior para colar o carrossel */ }
         .logos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -146,11 +150,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 5px;
+            transition: transform 0.3s ease;
         }
+        .logo-box:hover { transform: translateY(-3px); }
         .logo-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-        /* --- MARQUEE DE SERVIÇOS --- */
+        /* --- NOVO CARROSSEL SUAVE AO VIVO --- */
+        .continuous-carousel {
+            background: #0a0a0a; /* Fundo ligeiramente diferente para destacar */
+            padding: 25px 0;
+            margin-top: 50px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            border-top: 1px solid #222;
+        }
+        
+        /* Gradiente nas bordas para suavizar a entrada/saída */
+        .continuous-carousel::before,
+        .continuous-carousel::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .continuous-carousel::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+        .continuous-carousel::after { right: 0; background: linear-gradient(to left, #000, transparent); }
+
+        .carousel-track-smooth {
+            display: flex;
+            align-items: center;
+            gap: 40px; /* Espaçamento entre os logos */
+            width: max-content;
+            animation: smoothScroll 35s linear infinite; /* Ajuste a velocidade (segundos) aqui */
+        }
+
+        .carousel-track-smooth img {
+            height: 40px; /* Altura fixa para os logos do carrossel */
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            filter: grayscale(30%); /* Leve desaturação para não brigar com o resto */
+        }
+        /* Efeito hover opcional nos itens do carrossel */
+        .carousel-track-smooth img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        @keyframes smoothScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Move exatamente metade (o conjunto original) */
+        }
+
+        /* --- MARQUEE DE SERVIÇOS (Original - mantido se necessário, mas o novo carrossel está acima) --- */
         .services-bar {
             background: #111;
             padding: 15px 0;
@@ -160,13 +216,13 @@
             white-space: nowrap;
         }
         .services-track { display: flex; gap: 20px; justify-content: center; }
-        .services-track img { height: 30px; border-radius: 4px; }
+        .services-track img { height: 30px; border-radius: 4px; opacity: 0.6; }
 
         /* --- COMPATIBILIDADE --- */
         .compatibilidade { background-color: #000; }
         .comp-img { max-width: 700px; margin: 0 auto 30px auto; }
 
-        /* --- BENEFÍCIOS (Cards Vermelhos) --- */
+        /* --- BENEFÍCIOS --- */
         .beneficios { background-color: #000; }
         .cards-red-grid {
             display: flex;
@@ -181,8 +237,10 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(255,0,0,0.2);
+            transition: transform 0.3s ease;
         }
-        .card-red i, .card-red img { font-size: 40px; margin-bottom: 15px; color: white; display: block; margin-left: auto; margin-right: auto; height: 50px; width: auto; object-fit: contain; }
+        .card-red:hover { transform: translateY(-5px); }
+        .card-red i { font-size: 40px; margin-bottom: 15px; color: white; display: block; }
         .card-red h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; margin-bottom: 10px; }
         .card-red p { font-size: 12px; line-height: 1.4; }
 
@@ -198,11 +256,11 @@
         }
         .step-img { max-width: 300px; border-radius: 10px; }
 
-        /* --- PLANOS (Cards Brancos) --- */
+        /* --- PLANOS --- */
         .planos { background-color: #000; padding-bottom: 80px; }
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 Colunas como na imagem */
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             max-width: 800px;
             margin: 0 auto;
@@ -214,7 +272,9 @@
             padding: 30px 20px;
             text-align: center;
             position: relative;
+            transition: transform 0.3s ease;
         }
+        .plan-card:hover { transform: scale(1.02); }
         .plan-title { font-weight: 800; font-size: 16px; margin-bottom: 5px; font-family: 'Montserrat', sans-serif; }
         .plan-period { font-size: 12px; color: #666; margin-bottom: 15px; text-transform: uppercase; }
         .plan-price { font-size: 40px; font-weight: 900; color: #cc0000; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
@@ -230,7 +290,9 @@
             margin-bottom: 20px;
             display: block;
             box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s ease;
         }
+        .btn-plan:hover { background: linear-gradient(to bottom, #ff0000, #cc0000); }
         .plan-list { text-align: left; font-size: 13px; line-height: 2.2; color: #333; list-style: none; padding: 0 10px; }
         .plan-list li { display: flex; align-items: center; }
         .plan-list li i { color: #cc0000; margin-right: 10px; font-size: 12px; }
@@ -241,7 +303,7 @@
             color: #000;
             padding: 40px 0;
             text-align: center;
-            margin-top: 50px; /* Separar visualmente dos planos */
+            margin-top: 50px;
         }
         .support-section h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 10px; }
         .support-section p { font-size: 14px; margin-bottom: 20px; }
@@ -254,7 +316,9 @@
             text-transform: uppercase;
             display: inline-flex; align-items: center; gap: 10px;
             font-size: 13px;
+            transition: background-color 0.3s ease;
         }
+        .btn-whatsapp:hover { background-color: #1ebd5b; }
 
         .main-footer {
             background: #000;
@@ -267,13 +331,19 @@
         .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 24px; color: white; margin-bottom: 10px; }
         .footer-copy { font-size: 12px; color: #666; margin-top: 20px; }
 
-        /* Responsividade (Para manter estrutura 2x2 dos planos no mobile se a tela permitir, senão 1) */
+        /* Responsividade */
         @media (max-width: 768px) {
             .plans-grid { grid-template-columns: 1fr; }
             .logos-grid { grid-template-columns: repeat(3, 1fr); }
             .poster-grid { flex-wrap: wrap; }
             .steps-container { flex-direction: column; }
-            .nav-links { display: none; } /* Simplificação mobile */
+            .nav-links { display: none; }
+            .hero h1 { font-size: 24px; }
+            .section-title { font-size: 22px; }
+            
+            /* Ajuste do carrossel no mobile */
+            .carousel-track-smooth { gap: 25px; }
+            .carousel-track-smooth img { height: 30px; }
         }
     </style>
 </head>
@@ -311,12 +381,12 @@
             <p class="section-subtitle">As preferidas dos assinantes e os melhores documentários.</p>
             
             <div class="poster-grid">
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/u3bZgnGQ9T01sWNhyve4z0wFCbV.jpg" alt="Game of Thrones"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Interstellar"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/dzBTM9Haf071kY2EVDG83NajY98.jpg" alt="From"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/1QPO9XU1aMms305Ew0X511i578.jpg" alt="House of Dragon"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Batman"></div>
-                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="Vingadores"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/u3bZgnGQ9T01sWNhyve4z0wFCbV.jpg" alt="Poster 1"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Poster 2"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/dzBTM9Haf071kY2EVDG83NajY98.jpg" alt="Poster 3"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/1QPO9XU1aMms305Ew0X511i578.jpg" alt="Poster 4"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Poster 5"></div>
+                <div class="poster-card"><img src="https://image.tmdb.org/t/p/w200/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="Poster 6"></div>
             </div>
         </div>
     </section>
@@ -327,35 +397,49 @@
             <p class="section-subtitle">Notícias, esportes, entretenimento e muito mais para toda a família.</p>
             
             <div class="logos-grid">
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/HBO_logo.svg" alt="HBO"></div>
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/NBA_logo.svg" alt="NBA"></div>
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Animal_Planet_logo_2018.png" alt="Animal Planet"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier League"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA"></div>
                 
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg" alt="ESPN"></div>
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/History_Logo.svg" alt="History"></div>
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg" alt="Premier League"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png" alt="History"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png" alt="HBO"></div>
                 
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Fox_Sports_logo.svg" alt="Fox Sports"></div>
-                <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Pix.svg" alt="Pix"></div> <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/TNT_Logo_2016.svg" alt="TNT"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png" alt="Fox Sports"></div> 
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN"></div>
+                <div class="logo-box"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png" alt="Animal Planet"></div>
             </div>
 
             <a href="#planos" class="btn-main">ASSINAR AGORA</a>
+
+        </div>
+
+        <div class="continuous-carousel">
+            <div class="carousel-track-smooth">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime Video">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" alt="Paramount+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" alt="Hulu">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" alt="Crunchyroll">
+                
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime Video">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" alt="Paramount+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" alt="Hulu">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney+">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" alt="Crunchyroll">
+            </div>
         </div>
     </section>
-
-    <div class="services-bar">
-        <div class="services-track">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg" alt="Prime">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Star%2B_logo.svg" alt="Star+">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Sky_Group_logo_2020.svg" alt="Sky">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Apple_TV_Plus_logo.svg" alt="AppleTV">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Paramount%2B_logo.svg" alt="Paramount+">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Hulu_logo_%282014%29.svg" alt="Hulu">
-        </div>
-    </div>
 
     <section class="section-padding compatibilidade">
         <div class="container text-center">
