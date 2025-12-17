@@ -3,373 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DezPila Oficial: O melhor streaming IPTV do Brasil. Assista Filmes, Séries e Canais ao Vivo em 4K e Full HD. Planos a partir de R$ 10,00.">
-    <meta name="keywords" content="streaming, tv online, iptv, dezpila, filmes 4k, séries, canais ao vivo, futebol ao vivo">
-    <title>DezPila Oficial - Streaming de Alta Qualidade</title>
+    <meta name="description" content="DezPila Oficial: Streaming Premium.">
+    <title>DezPila Oficial - Streaming de Cinema</title>
     
     <link rel="icon" href="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" type="image/png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- VARIÁVEIS & RESET PREMIUM --- */
+        /* --- RESET E BASE --- */
         :root {
-            --primary: #E50914; /* Vermelho Netflix/DezPila */
-            --primary-glow: rgba(229, 9, 20, 0.5);
-            --accent: #ff1e2b;
-            
-            /* Paleta Escura Cinematográfica */
-            --bg-main: #030303; /* Preto quase absoluto */
-            --bg-secondary: #0a0a0a; /* Cinza muito escuro para seções */
-            --text-color: #ffffff;
-            --text-muted: #b3b3b3; /* Cinza claro para descrições */
-            
-            /* UI Cards Premium (Vidro Escuro) */
-            --card-bg: rgba(20, 20, 20, 0.85);
-            --card-border: 1px solid rgba(255, 255, 255, 0.1);
-            --card-hover-border: 1px solid rgba(255, 255, 255, 0.8); /* Hover Branco */
-            --glass-blur: blur(20px);
-            
-            --section-spacing: 120px;
+            --red: #E50914;
+            --black: #000000;
+            --dark-gray: #141414;
+            --light-gray: #B3B3B3;
+            --white: #FFFFFF;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        html { scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { 
-            background-color: var(--bg-main); 
-            color: var(--text-color); 
-            /* Gradiente de fundo sutil para profundidade */
-            background-image: radial-gradient(circle at 50% 0%, rgba(229,9,20,0.15) 0%, #000000 70%);
-            background-attachment: fixed;
-            position: relative;
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* EFEITO DE GRANULADO (NOISE) SUAVE - Textura de Cinema */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.025; 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; line-height: 1.1; text-transform: uppercase; }
+        p { color: var(--light-gray); line-height: 1.6; font-size: 1.1rem; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.5px; color: white; }
-        p { color: var(--text-muted); line-height: 1.6; }
-        a { text-decoration: none; color: white; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        img, video { max-width: 100%; display: block; }
-        section { position: relative; z-index: 1; padding: var(--section-spacing) 0; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
-
-        /* --- BOTÃO CTA PREMIUM (Hover Branco) --- */
+        /* --- BOTÃO GLOBAL (ESTILO NETFLIX) --- */
         .btn-cta {
-            background: linear-gradient(45deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 18px 50px;
-            font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px; /* Cantos ligeiramente arredondados como HBO/Prime */
-            display: inline-block;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 4px; /* Cantos levemente arredondados */
             border: 2px solid transparent;
+            text-transform: uppercase;
+            display: inline-block;
             cursor: pointer;
-            box-shadow: 0 10px 30px -10px var(--primary-glow);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative; overflow: hidden;
+            transition: all 0.2s ease-in-out;
         }
         
-        /* Efeito Hover Branco Brilhante */
-        .btn-cta:hover { 
-            background: white;
-            color: var(--primary);
-            border-color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4); 
+        /* HOVER BRANCO (PEDIDO) */
+        .btn-cta:hover {
+            background-color: var(--white);
+            color: var(--red);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
         }
 
-        /* --- HEADER ESTILO NETFLIX/HBO --- */
+        /* --- HEADER --- */
         header {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%); /* Gradiente transparente */
-            padding: 25px 0;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: 0.4s;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid #222;
+            padding: 20px 0;
         }
         
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 50px; filter: drop-shadow(0 0 10px rgba(229,9,20,0.3)); }
+        .nav-container { display: flex; justify-content: center; align-items: center; position: relative; }
         
-        .nav-menu { display: flex; gap: 40px; align-items: center; }
-        .nav-menu a { 
-            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; transition: 0.3s; 
-            font-family: 'Montserrat', sans-serif;
+        .logo img { height: 45px; }
+        
+        .nav-menu { 
+            display: flex; gap: 30px; margin-left: 40px; 
         }
-        /* Hover Branco no Menu */
-        .nav-menu a:hover { opacity: 1; color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        
-        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: white; opacity: 0.8; transition: 0.3s; }
-        .menu-toggle:hover { opacity: 1; color: white; }
+        .nav-menu a { font-size: 0.9rem; font-weight: 700; color: #e5e5e5; }
+        .nav-menu a:hover { color: var(--white); text-decoration: underline; }
 
-        /* --- HERO IMMERSIVO --- */
+        .menu-toggle { display: none; position: absolute; right: 20px; font-size: 1.8rem; cursor: pointer; }
+
+        /* --- HERO (CENTRALIZADO COM VÍDEO) --- */
         .hero {
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            padding-top: 150px; padding-bottom: 100px;
-            /* Fundo radial dramático */
-            background: radial-gradient(circle at center, rgba(229,9,20,0.15) 0%, transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0) 80%, #030303 100%);
+            padding-top: 140px; padding-bottom: 80px;
+            background: radial-gradient(circle at center, rgba(229,9,20,0.2), #000 60%);
             text-align: center;
-        }
-        .hero-container { display: flex; flex-direction: column; align-items: center; max-width: 950px; }
-        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 40px; font-weight: 900; text-transform: uppercase; }
-        .hero h1 span { color: var(--primary); /* text-shadow: 0 0 40px var(--primary-glow); Removido glow vermelho do texto para manter foco no branco dos botões */ }
-
-        /* Contêiner de Vídeo Premium */
-        .hero-video-wrapper {
-            width: 100%; max-width: 800px; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.9); /* Sombra profunda */
-            border: 1px solid rgba(255,255,255,0.1); 
-            margin-bottom: 40px; transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-        }
-        /* Efeito de brilho na borda ao passar o mouse */
-        .hero-video-wrapper:hover { 
-            transform: scale(1.02); 
-            border-color: rgba(255,255,255,0.4); /* Borda branca sutil */
-            box-shadow: 0 50px 120px rgba(0,0,0,1), 0 0 30px rgba(255,255,255,0.1);
-        }
-        .hero-video-wrapper video { width: 100%; height: auto; display: block; }
-
-        .hero p { font-size: 1.4rem; margin-bottom: 40px; max-width: 750px; font-weight: 400; }
-
-        /* --- TÍTULOS DE SEÇÃO ESTILO STREAMING --- */
-        .section-header { text-align: left; margin-bottom: 50px; }
-        .section-title { font-size: 2.5rem; text-transform: uppercase; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
-        .section-title span { color: var(--primary); }
-        .section-subtitle { font-size: 1.1rem; max-width: 600px; }
-        .center-header { text-align: center; } .center-header .section-subtitle { margin: 0 auto; }
-
-        /* --- MARQUEES (Carrosséis Infinitos) --- */
-        .channels-section { padding: 30px 0; background: var(--bg-secondary); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
-        .marquee { display: flex; gap: 50px; animation: scroll 35s linear infinite; width: max-content; }
-        .marquee img { height: 50px; object-fit: contain; filter: grayscale(100%) opacity(0.6); transition: 0.3s; }
-        /* Hover Branco nos logos */
-        .marquee img:hover { filter: grayscale(0%) opacity(1); drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- DESTAQUES (Pôsteres) --- */
-        .highlights { overflow: hidden; background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary)); }
-        .poster-marquee { padding: 20px 0; position: relative; overflow: hidden; }
-        .poster-track { display: flex; gap: 20px; width: max-content; animation: scrollPosters 60s linear infinite; }
-        .poster-track:hover { animation-play-state: paused; }
-        
-        .poster-card { width: 200px; flex-shrink: 0; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; position: relative; }
-        .poster-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-        
-        /* Hover Branco Premium no Pôster */
-        .poster-card:hover { 
-            transform: scale(1.15); z-index: 10; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 3px white; /* Borda branca brilhante */
-        }
-        @keyframes scrollPosters { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- AO VIVO (Grid Desktop / Marquee Mobile) --- */
-        .live-section { overflow: hidden; background: var(--bg-secondary); }
-        .live-channels-container { max-width: 1000px; margin: 0 auto 60px auto; }
-        .live-channels-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-
-        .live-icon {
-            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
-            border-radius: 12px; padding: 20px; height: 130px;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s ease; overflow: hidden; position: relative;
-        }
-        /* Hover Branco nos Canais Ao Vivo */
-        .live-icon:hover { 
-            border-color: white; 
-            background: rgba(255,255,255,0.05);
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.3);
-        }
-        .live-icon img { width: 85%; height: 85%; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); transition: 0.3s; }
-        .live-icon:hover img { transform: scale(1.05); }
-        .live-icon.dup { display: none; } 
-
-        .platforms-marquee { padding: 20px 0; background: transparent; overflow: hidden; margin-bottom: 30px; opacity: 0.7; }
-
-        /* --- ALTA COMPATIBILIDADE (Vertical Centralizado) --- */
-        .compatibility { 
-            background: linear-gradient(to bottom, var(--bg-secondary), #050505);
-            text-align: center; 
-        }
-        .comp-container { display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; }
-        .comp-img-wrapper { margin: 60px 0; position: relative; }
-        /* Glow vermelho sutil atrás da imagem central */
-        .comp-img-wrapper::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; height: 70%; background: var(--primary); filter: blur(120px); opacity: 0.15; z-index: -1; }
-        .comp-img { max-width: 100%; height: auto; display: block; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8)); }
-
-        /* --- CARDS GENÉRICOS (Benefícios, Passos) - Estilo Premium Escuro --- */
-        .generic-card {
-            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
-            padding: 40px 30px; border-radius: 16px; text-align: center; transition: 0.3s;
             display: flex; flex-direction: column; align-items: center;
         }
-        /* Hover Branco Genérico */
-        .generic-card:hover { 
-            border-color: white; transform: translateY(-7px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.02);
+        
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; }
+        .hero h1 span { color: var(--red); }
+        
+        .hero-video-box {
+            width: 100%; max-width: 800px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(229, 9, 20, 0.15); /* Glow vermelho sutil */
+            margin: 30px 0;
+            background: #000;
         }
-        .card-icon { height: 80px; margin-bottom: 25px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); transition: 0.3s; }
-        .generic-card:hover .card-icon { transform: scale(1.1); filter: drop-shadow(0 10px 20px rgba(255,255,255,0.2)); }
-        .generic-card h3, .generic-card h4 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
+        .hero-video-box video { width: 100%; display: block; }
+        
+        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 40px; }
+
+        /* --- CARROSSEL MARQUEE (COLORIDO) --- */
+        .marquee-section { background: var(--dark-gray); padding: 30px 0; overflow: hidden; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        .marquee-track { display: flex; gap: 50px; width: max-content; animation: scroll 40s linear infinite; }
+        .marquee-track img { height: 50px; opacity: 1; filter: none; } /* Cores originais */
+        
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- DESTAQUES --- */
+        .catalog { padding: 80px 0; text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 10px; color: var(--white); }
+        .section-title span { color: var(--red); }
+        .section-desc { margin-bottom: 50px; }
+
+        .poster-scroll { overflow: hidden; padding: 20px 0; }
+        .poster-track { display: flex; gap: 20px; width: max-content; animation: scroll 60s linear infinite; }
+        .poster-track:hover { animation-play-state: paused; }
+        
+        .poster { 
+            width: 200px; flex-shrink: 0; transition: 0.3s; cursor: pointer; border-radius: 4px; overflow: hidden; 
+            border: 2px solid transparent;
+        }
+        /* Hover Branco no Poster */
+        .poster:hover { transform: scale(1.1); border-color: var(--white); z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
+        /* --- AO VIVO (GRID DESKTOP / CARROSSEL MOBILE) --- */
+        .live-section { background: var(--dark-gray); padding: 80px 0; }
+        .live-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 1000px; margin: 0 auto 50px auto;
+        }
+        
+        .channel-card {
+            background: #1f1f1f; border: 1px solid #333; border-radius: 8px;
+            height: 120px; display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; cursor: pointer; padding: 15px;
+        }
+        /* Hover Branco no Canal */
+        .channel-card:hover { background: var(--white); transform: translateY(-5px); border-color: var(--white); }
+        .channel-card img { max-width: 80%; max-height: 80%; object-fit: contain; }
+        
+        .channel-card.dup { display: none; } /* Esconde duplicatas no PC */
+
+        .platform-marquee { padding: 40px 0; overflow: hidden; }
+
+        /* --- ALTA COMPATIBILIDADE (VERTICAL) --- */
+        .compatibility { padding: 100px 0; text-align: center; background: var(--black); }
+        .comp-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .comp-content img { margin: 40px 0; max-width: 100%; filter: drop-shadow(0 0 20px rgba(255,255,255,0.1)); }
 
         /* --- BENEFÍCIOS --- */
-        .benefits { background: var(--bg-main); }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
-
-        /* --- COMO FUNCIONA --- */
-        .how-it-works { background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary)); text-align: center; }
-        .steps-wrapper { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 80px; }
-        .step-img-card { max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
-        .step-img-card:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.5); }
+        .benefits { padding: 100px 0; background: var(--dark-gray); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
         
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .step-number-icon { width: 50px; height: 50px; background: var(--primary); color: white; font-size: 1.5rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 5px 15px var(--primary-glow); }
-
-        /* --- PLANOS (Cards de Preço Premium) --- */
-        .pricing { background: var(--bg-secondary); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(2, max-content); gap: 40px; justify-content: center; margin-top: 50px; }
-        .price-card { 
-            background: var(--card-bg); border: var(--card-border); backdrop-filter: var(--glass-blur);
-            border-radius: 20px; padding: 50px 40px; text-align: left; position: relative; transition: 0.3s; 
-            display: flex; flex-direction: column; min-width: 320px;
+        .benefit-item { 
+            background: #1f1f1f; padding: 40px; border-radius: 8px; text-align: center; border: 1px solid #333; transition: 0.3s; 
         }
-        .price-card.featured { 
-            background: linear-gradient(145deg, rgba(30,30,30,0.9), rgba(229,9,20,0.1)); 
-            border: 2px solid var(--primary); 
-            transform: scale(1.05); z-index: 2; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(229,9,20,0.2);
+        /* Hover Branco no Benefício */
+        .benefit-item:hover { background: #252525; border-color: var(--white); transform: translateY(-5px); }
+        .benefit-item img { height: 80px; margin: 0 auto 20px auto; }
+        .benefit-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* --- COMO FUNCIONA (LADO A LADO) --- */
+        .how-works { padding: 100px 0; text-align: center; background: linear-gradient(to bottom, var(--black), var(--dark-gray)); }
+        
+        .hw-images-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Espaço entre as imagens */
+            margin-bottom: 60px;
         }
         
-        /* Hover Branco nos Planos */
-        .price-card:hover { transform: translateY(-10px) scale(1.02); border-color: white; box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,255,255,0.2); }
-        .price-card.featured:hover { transform: translateY(-10px) scale(1.07); border-color: white; }
+        /* Controle rígido das imagens */
+        .hw-img-tv { width: 400px; border-radius: 10px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hw-img-check { width: 300px; /* Um pouco menor que a TV */ filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
 
-        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 15px var(--primary-glow); }
-        .price-header h3 { font-size: 1.4rem; font-weight: 800; opacity: 0.9; }
-        .small-text { font-size: 0.9rem; opacity: 0.6; }
-        .price-value { font-size: 4rem; font-weight: 900; margin: 30px 0; color: white; line-height: 1; font-family: 'Montserrat', sans-serif; }
-        .price-value span { font-size: 1.5rem; font-weight: 700; }
-        .price-card.featured .price-value { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
-        .price-features li { margin-bottom: 18px; font-size: 1.05rem; display: flex; align-items: center; opacity: 0.9; }
-        .price-features li i { color: var(--primary); margin-right: 15px; font-size: 1.2rem; }
-        .price-card .btn-cta { width: 100%; text-align: center; margin-top: auto; }
+        /* Grid de Texto */
+        .hw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; text-align: center; }
+        .step { background: #1f1f1f; padding: 30px; border-radius: 8px; border: 1px solid #333; }
+        .step-num { 
+            background: var(--red); color: white; width: 40px; height: 40px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; margin: 0 auto 15px auto; 
+        }
 
-        /* --- FAQ (Estilo Acordeão Limpo) --- */
-        .faq { background: var(--bg-main); }
-        .faq-container { max-width: 800px; }
-        .faq-item { background: var(--card-bg); border: var(--card-border); margin-bottom: 15px; border-radius: 8px; overflow: hidden; transition: 0.3s; }
-        /* Hover Branco no FAQ */
-        .faq-item:hover { border-color: white; background: rgba(255,255,255,0.03); }
-        .faq-question { padding: 25px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; transition: 0.3s; }
-        .faq-answer { padding: 0 25px 25px; display: none; color: var(--text-muted); line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); }
+        /* --- PLANOS (2X2) --- */
+        .plans { padding: 100px 0; background: var(--black); text-align: center; }
+        .plans-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* 2 Colunas Fixas */
+            gap: 30px; 
+            max-width: 900px; 
+            margin: 50px auto 0 auto; 
+        }
+        
+        .plan-card {
+            background: var(--dark-gray); border: 1px solid #333; padding: 40px; border-radius: 12px; text-align: left; transition: 0.3s;
+            display: flex; flex-direction: column;
+        }
+        /* Hover Branco no Plano */
+        .plan-card:hover { border-color: var(--white); transform: scale(1.02); background: #1a1a1a; }
+        
+        .plan-card.highlight { border: 2px solid var(--red); background: linear-gradient(145deg, #1a1a1a, #000); }
+        .plan-card.highlight:hover { border-color: var(--white); }
+
+        .plan-price { font-size: 3rem; font-weight: 900; color: var(--white); margin: 20px 0; }
+        .plan-price span { font-size: 1rem; color: var(--light-gray); font-weight: 400; }
+        
+        .plan-features li { margin-bottom: 12px; color: #ccc; display: flex; align-items: center; font-size: 0.95rem; }
+        .plan-features i { color: var(--red); margin-right: 10px; }
+
+        /* --- FAQ --- */
+        .faq { padding: 80px 0; background: var(--dark-gray); }
+        .faq-item { background: #000; border: 1px solid #333; margin-bottom: 10px; border-radius: 4px; overflow: hidden; }
+        .faq-item:hover { border-color: var(--white); }
+        .faq-question { padding: 20px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; }
+        .faq-answer { padding: 0 20px 20px; display: none; color: #aaa; }
         .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .faq-question { color: var(--primary); }
-        .faq-item.active { border-color: var(--primary); }
+        .faq-item.active .faq-question { color: var(--red); }
 
         /* --- SUPORTE --- */
-        .support-section { padding: 100px 0; text-align: center; background: linear-gradient(to bottom, var(--bg-secondary), #000); }
-        .support-card {
-            background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(37, 211, 102, 0.05));
-            border: 1px solid rgba(37, 211, 102, 0.3); backdrop-filter: var(--glass-blur);
-            border-radius: 20px; padding: 60px 40px; max-width: 800px; margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .support-content h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
-        
-        /* Botão WhatsApp (Hover Branco) */
-        .whatsapp-btn-large {
-            background: #25d366; color: white; padding: 20px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 4px;
-            display: inline-flex; align-items: center; gap: 15px; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); transition: 0.3s; border: 2px solid transparent;
-        }
-        .whatsapp-btn-large:hover { 
-            background: white; color: #25d366; border-color: white;
-            transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 255, 255, 0.5); 
-        }
-
-        /* --- FOOTER PREMIUM (Baseado na imagem de referência) --- */
-        footer { background: #000; padding: 80px 0 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-logo-img { height: 40px; margin: 0 auto 30px auto; opacity: 0.9; }
-        .footer-desc { color: var(--text-muted); margin-bottom: 50px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .footer-middle-row { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
-        
-        /* Ícones Sociais (Hover Branco) */
-        .social-btn { 
-            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: rgba(255,255,255,0.7); transition: 0.3s; 
-            border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
-        }
-        .social-btn:hover { 
-            background: white; color: var(--primary); border-color: white;
-            transform: translateY(-3px); box-shadow: 0 0 25px rgba(255,255,255,0.7); 
+        .support { padding: 80px 0; text-align: center; background: linear-gradient(to bottom, var(--black), #111); }
+        .support-box { 
+            background: #141414; border: 1px solid #333; max-width: 700px; margin: 0 auto; padding: 50px; border-radius: 12px; 
         }
         
-        /* Pílula de Pagamento (Estilo da Imagem) */
-        .payment-pill { 
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; 
-            padding: 12px 35px; display: flex; gap: 20px; align-items: center; 
+        .btn-whatsapp-lg {
+            background: #25d366; color: white; padding: 15px 40px; font-weight: 800; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem;
+            border: 2px solid transparent; transition: 0.3s;
         }
-        .payment-pill img { height: 22px; width: auto; filter: grayscale(100%) brightness(200%); opacity: 0.8; transition: 0.3s; }
-        .payment-pill:hover img { filter: grayscale(0%) brightness(100%); opacity: 1; }
+        .btn-whatsapp-lg:hover { background: var(--white); color: #25d366; border-color: #25d366; }
 
-        .copyright-text { font-weight: 700; color: white; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 1px; }
-        .voxo-credit { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
-        .voxo-credit a { color: rgba(255,255,255,0.6); font-weight: bold; }
-        .voxo-credit a:hover { color: white; }
-
-        /* --- WHATSAPP FLOAT (Hover Branco) --- */
-        .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
-            z-index: 999; animation: pulse 2s infinite; transition: 0.3s; border: 2px solid transparent;
+        /* --- FOOTER --- */
+        footer { background: #000; padding: 60px 0 30px; text-align: center; border-top: 1px solid #222; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        
+        .social-row { display: flex; gap: 20px; align-items: center; }
+        .icon-btn { 
+            width: 45px; height: 45px; background: #222; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: white; font-size: 1.4rem; transition: 0.3s;
         }
-        .whatsapp-float:hover { background: white; color: #25d366; border-color: white; box-shadow: 0 0 40px rgba(255,255,255,0.8); }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .icon-btn:hover { background: var(--white); color: var(--black); }
+        .icon-btn.yt:hover { color: red; }
+        .icon-btn.wa:hover { color: #25d366; }
+
+        .payment-row { 
+            background: #111; padding: 10px 30px; border-radius: 50px; border: 1px solid #333; display: flex; gap: 15px; 
+        }
+        .payment-row img { height: 20px; background: white; padding: 2px; border-radius: 2px; }
+
+        /* --- WHATSAPP FLUTUANTE --- */
+        .float-wa {
+            position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); z-index: 2000; transition: 0.3s; border: 2px solid transparent;
+        }
+        .float-wa:hover { background: var(--white); color: #25d366; border-color: #25d366; }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 900px) {
-            :root { --section-spacing: 80px; }
-            .hero h1 { font-size: 3rem; }
-            .hero p { font-size: 1.1rem; }
-            .hero-video-wrapper { max-width: 90%; }
-            
-            /* CARROSSEL DE CANAIS AO VIVO (MOBILE) */
-            .live-channels-track { display: flex; gap: 20px; width: max-content; animation: scroll 30s linear infinite; }
-            .live-icon { min-width: 160px; height: 120px; flex-shrink: 0; }
-            .live-icon.dup { display: flex; } 
-
-            .steps-wrapper { flex-direction: column; gap: 30px; }
-            .step-img-card { width: 80%; max-width: none; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
-            .price-card { min-width: auto; padding: 40px 30px; }
-            .price-card.featured { transform: scale(1); }
-            .footer-middle-row { flex-direction: column; gap: 30px; }
-            .support-card { padding: 40px 25px; }
-            .whatsapp-btn-large { font-size: 0.9rem; padding: 15px 30px; width: 100%; justify-content: center; }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu { position: absolute; top: 70px; left: -100%; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); flex-direction: column; justify-content: center; transition: 0.4s; backdrop-filter: blur(20px); }
-            .nav-menu.active { left: 0; }
+            .hero { padding-top: 120px; }
+            .hero h1 { font-size: 2.8rem; }
+            .nav-menu { display: none; }
             .menu-toggle { display: block; }
-            .section-title { font-size: 2rem; }
-            .poster-card { width: 150px; }
-            .payment-pill { padding: 10px 20px; flex-wrap: wrap; justify-content: center; }
+            
+            /* Menu Mobile */
+            .nav-menu.active {
+                display: flex; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: #000; padding: 30px; border-bottom: 1px solid #333;
+            }
+            
+            /* Ajuste "Como Funciona" Mobile */
+            .hw-images-wrapper { flex-direction: column; }
+            .hw-img-tv, .hw-img-check { width: 90%; max-width: 350px; }
+            .hw-steps { grid-template-columns: 1fr; }
+
+            /* Ajuste "Ao Vivo" Mobile (Carrossel) */
+            .live-grid {
+                display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px;
+                scroll-snap-type: x mandatory;
+            }
+            .channel-card {
+                min-width: 160px; /* Largura fixa para caber ~2 */
+                height: 100px; flex-shrink: 0; scroll-snap-align: start;
+            }
+            .channel-card.dup { display: flex; } /* Mostra duplicatas para loop */
+            
+            /* Ajuste Planos Mobile */
+            .plans-grid { grid-template-columns: 1fr; }
+            
+            .payment-row { max-width: 90%; flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -377,26 +300,26 @@
 
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila Oficial Logo">
-            </a>
-            <nav>
-                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-                <ul class="nav-menu">
-                    <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#planos" class="btn-cta" style="padding: 12px 30px; font-size: 0.9rem; box-shadow:none;">Assinar</a></li>
-                </ul>
+            <div class="logo">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila">
+            </div>
+            
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            
+            <nav class="nav-menu">
+                <a href="#catalogo">Catálogo</a>
+                <a href="#canais">Canais</a>
+                <a href="#como-funciona">Como Funciona</a>
+                <a href="#planos" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Assinar</a>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container hero-container">
+        <div class="container">
             <h1>Você só precisa de <br><span>DEZPILA</span></h1>
             
-            <div class="hero-video-wrapper">
+            <div class="hero-video-box">
                 <video autoplay muted loop playsinline poster="https://dezpilaoficial.com/wp-content/uploads/2025/12/tela-dez-pela.png">
                     <source src="https://dezpilaoficial.com/wp-content/uploads/2025/12/DezPila-Oficial-1.mp4" type="video/mp4">
                     Seu navegador não suporta vídeos.
@@ -408,154 +331,118 @@
         </div>
     </section>
 
-    <section class="channels-section">
-        <div class="marquee">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
-            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney">
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png">
         </div>
-    </section>
+    </div>
 
-    <section id="catalogo" class="highlights">
-        <div class="container section-header center-header">
+    <section id="catalogo" class="catalog">
+        <div class="container">
             <h2 class="section-title">Produções em <span>Destaque</span></h2>
-            <p class="section-subtitle">Aproveite lançamentos dos cinemas e o melhor dos streamings.</p>
-        </div>
-
-        <div class="poster-marquee">
-            <div class="poster-track">
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_d0a38bfd64f04e1b8921c713c7205f4dmv2-rfog2lcyk63nwdwznr5i9s5kz2e6y2jybnmbm97ftu.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_c35071ddac1d4c67ab014969fa7f155fmv2-rfog1u3n1z2cjp0l2xdbrh17qw4jqujqjwp8p8buua.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_b5e39379f43b40a487d3be87d3c67e87mv2-rfog2zgjeomyqjcidf8wt6lhvugp5j3xdleltemj8i.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_a31623cd305742cf93b9428fc5734fffmv2-rfog20oidtbcsyr10i7pqxdfwl848q9uwt9n2623mq.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_8920ae9ff1d645cab037bc30c7a2c54cmv2-rfog26bjitj2qmiu3knh5vy7gwgbiww8xl6jxttqle.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_835c6518f1004fb89e8060b77b2d224dmv2-rfog1wx5mh67iiwhmgl7gyblj1qndxuxkanp527obm.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_80cb6c94f4694c33b067725661b65e9bmv2-1-1-rfog2es38bunn46jq6b4abtctdamg6ttyr1x9bh71e.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_46a7b9829517437598f3fd4805a37530mv2-rfog2hllstyily2g9pizzt3qliwq3a50z50dp5d0iq.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_35a6fbc749ff40c5b5ae06f832753f31mv2-rfog2bykntqsoaan6n38kuiz17oit3imyd3gthldk2.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9da5689adac04f94a0438377456ae6damv2-rfog2p4bbi8t6trj1ss0jr7fclvnsuyvo689jd1v4y.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9bc3167dcc0d4416b29d65fad5f02be4mv2-rfog2vp6nchtg3hyzdmej7jniaz8aqp012snwas3xe.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_6a69333d748d45b592417aa139def4f4mv2-1-rfog29523bmxpgeqn3vcvd8l922f607fxz50dnpk2q-1.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_4d130534048946d7bec46825b501da6amv2-rfog353kjouoo74bghoo8569g5owfpqbedbip2e676.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_0c3c77f03e94484bae2ac9b8519e2192mv2-rfog23i0ybf7rsmxk1flgentoqu7vtl1x783hzxx42.png"></div>
-                
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_d0a38bfd64f04e1b8921c713c7205f4dmv2-rfog2lcyk63nwdwznr5i9s5kz2e6y2jybnmbm97ftu.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_c35071ddac1d4c67ab014969fa7f155fmv2-rfog1u3n1z2cjp0l2xdbrh17qw4jqujqjwp8p8buua.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_b5e39379f43b40a487d3be87d3c67e87mv2-rfog2zgjeomyqjcidf8wt6lhvugp5j3xdleltemj8i.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_a31623cd305742cf93b9428fc5734fffmv2-rfog20oidtbcsyr10i7pqxdfwl848q9uwt9n2623mq.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_8920ae9ff1d645cab037bc30c7a2c54cmv2-rfog26bjitj2qmiu3knh5vy7gwgbiww8xl6jxttqle.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_835c6518f1004fb89e8060b77b2d224dmv2-rfog1wx5mh67iiwhmgl7gyblj1qndxuxkanp527obm.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_80cb6c94f4694c33b067725661b65e9bmv2-1-1-rfog2es38bunn46jq6b4abtctdamg6ttyr1x9bh71e.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_46a7b9829517437598f3fd4805a37530mv2-rfog2hllstyily2g9pizzt3qliwq3a50z50dp5d0iq.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_35a6fbc749ff40c5b5ae06f832753f31mv2-rfog2bykntqsoaan6n38kuiz17oit3imyd3gthldk2.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9da5689adac04f94a0438377456ae6damv2-rfog2p4bbi8t6trj1ss0jr7fclvnsuyvo689jd1v4y.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_9bc3167dcc0d4416b29d65fad5f02be4mv2-rfog2vp6nchtg3hyzdmej7jniaz8aqp012snwas3xe.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_6a69333d748d45b592417aa139def4f4mv2-1-rfog29523bmxpgeqn3vcvd8l922f607fxz50dnpk2q-1.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_4d130534048946d7bec46825b501da6amv2-rfog353kjouoo74bghoo8569g5owfpqbedbip2e676.png"></div>
-                <div class="poster-card"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_0c3c77f03e94484bae2ac9b8519e2192mv2-rfog23i0ybf7rsmxk1flgentoqu7vtl1x783hzxx42.png"></div>
+            <p class="section-desc">Aproveite lançamentos dos cinemas e o melhor dos streamings.</p>
+            
+            <div class="poster-scroll">
+                <div class="poster-track">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_d0a38bfd64f04e1b8921c713c7205f4dmv2-rfog2lcyk63nwdwznr5i9s5kz2e6y2jybnmbm97ftu.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_c35071ddac1d4c67ab014969fa7f155fmv2-rfog1u3n1z2cjp0l2xdbrh17qw4jqujqjwp8p8buua.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_b5e39379f43b40a487d3be87d3c67e87mv2-rfog2zgjeomyqjcidf8wt6lhvugp5j3xdleltemj8i.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_a31623cd305742cf93b9428fc5734fffmv2-rfog20oidtbcsyr10i7pqxdfwl848q9uwt9n2623mq.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_8920ae9ff1d645cab037bc30c7a2c54cmv2-rfog26bjitj2qmiu3knh5vy7gwgbiww8xl6jxttqle.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_835c6518f1004fb89e8060b77b2d224dmv2-rfog1wx5mh67iiwhmgl7gyblj1qndxuxkanp527obm.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e091677639e04b42b298dc22a0c16fdemv2-rfog2svo2udyh9m2fueitq99q5d4nndt0ou7ggwag2.png" class="poster">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/12a749_e08fbc05eef0489390bd02b3eefff5d7mv2-1-rfog32a1z6qtpd8ewygsinvvo02ssmf4dzd298icpu.png" class="poster">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="live-section">
-        <div class="container section-header center-header">
-            <h2 class="section-title">Não perca o melhor do <span>Ao Vivo</span></h2>
-            <p class="section-subtitle">Notícias, esportes, documentários e muito mais já incluídos na plataforma.</p>
-        </div>
-        
-        <div class="live-channels-container">
-            <div class="live-channels-track">
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png" alt="History"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png" alt="HBO"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png" alt="Fox"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN"></div>
-                <div class="live-icon"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png" alt="Animal Planet"></div>
-
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png" alt="TNT"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png" alt="Premier"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png" alt="NBA"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png" alt="Megapix"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png" alt="History"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png" alt="HBO"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png" alt="Fox"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png" alt="ESPN"></div>
-                <div class="live-icon dup"><img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png" alt="Animal Planet"></div>
+    <section id="canais" class="live-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Não perca o melhor do <span>Ao Vivo</span></h2>
+                <p class="section-desc">Notícias, esportes, documentários e muito mais.</p>
             </div>
-        </div>
 
-        <div style="text-align: center; margin-bottom: 40px;">
-            <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
-        </div>
+            <div class="live-grid">
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MEGAPIX-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HISTORY-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/HBO-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/fox-sports-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ESPN-3.png"></div>
+                <div class="channel-card"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ANIMAL-PLANET-3.png"></div>
+                <div class="channel-card dup"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/TNT-1-3.png"></div>
+                <div class="channel-card dup"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/PREMIER-LEAGUE-3.png"></div>
+                <div class="channel-card dup"><img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/NBA-3.png"></div>
+            </div>
 
-        <div class="platforms-marquee">
-            <div class="marquee">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png" alt="Paramount">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png" alt="Netflix">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hulu.png" alt="Hulu">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/hbo.png" alt="HBO">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/disney.png" alt="Disney">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/crunchyrool.png" alt="Crunchyroll">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png" alt="TV">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png" alt="Star+">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png" alt="Sky">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png" alt="Prime">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
+            </div>
+
+            <div class="platform-marquee">
+                <div class="marquee-track">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/sky.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/prime.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/paramount.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/netflix.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tv.png">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/star.png">
+                </div>
             </div>
         </div>
     </section>
 
     <section class="compatibility">
-        <div class="container comp-container">
+        <div class="container comp-content">
             <h2 class="section-title">Alta <span>Compatibilidade</span></h2>
-            <p class="section-subtitle">Assista em qualquer dispositivo, de qualquer lugar.</p>
+            <p class="section-desc">Assista em qualquer dispositivo, de qualquer lugar.</p>
             
-            <div class="comp-img-wrapper">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/mockup-dez-pela.png" alt="Dispositivos Compatíveis" class="comp-img">
-            </div>
-
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/mockup-dez-pela.png" alt="Dispositivos">
+            
             <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
         </div>
     </section>
 
     <section id="beneficios" class="benefits">
-        <div class="container center-header">
-            <h2 class="section-title">Veja o que você terá com o <span>DezPila</span></h2>
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title">Veja o que você terá com o <span>DezPila</span></h2>
+            </div>
             
             <div class="benefits-grid">
-                <div class="generic-card benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-ADS-2.png" alt="Sem Anúncios" class="card-icon">
-                    <h3>Sem anúncios</h3>
+                <div class="benefit-item">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-ADS-2.png">
+                    <h3>Sem Anúncios</h3>
                     <p>Assista sem interrupções, sem anúncios chatos aparecendo na sua tela.</p>
                 </div>
-                <div class="generic-card benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-CLAQ-2-150x150-1.png" alt="Alta Resolução" class="card-icon">
+                <div class="benefit-item">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-CLAQ-2-150x150-1.png">
                     <h3>Alta Resolução</h3>
-                    <p>Assista conteúdos na melhor qualidade em FullHD e 4k.</p>
+                    <p>Conteúdos na melhor qualidade em FullHD e 4k.</p>
                 </div>
-                <div class="generic-card benefit-card">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-BARAT-2-150x150-1.png" alt="Preço Baixo" class="card-icon">
+                <div class="benefit-item">
+                    <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ICON-BARAT-2-150x150-1.png">
                     <h3>Só DezPila</h3>
                     <p>Pague por muito conteúdo, sem perder sua carteira.</p>
                 </div>
@@ -563,199 +450,149 @@
         </div>
     </section>
 
-    <section id="como-funciona" class="how-it-works">
-        <div class="container section-header center-header">
-            <h2 class="section-title">Como <span>funciona?</span></h2>
-        </div>
-        
+    <section id="como-funciona" class="how-works">
         <div class="container">
-            <div class="steps-wrapper">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tela-dez-pela.png" alt="Tela de Checkout" class="step-img-card">
-                <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/check02.png" alt="Login Recebido" class="step-img-card">
+            <h2 class="section-title">Como <span>Funciona?</span></h2>
+            <p class="section-desc" style="margin-bottom: 50px;">Processo simples e rápido.</p>
+
+            <div class="hw-images-wrapper">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/tela-dez-pela.png" class="hw-img-tv">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/check02.png" class="hw-img-check">
             </div>
 
-            <div class="steps-grid">
-                <div class="generic-card step-item">
-                    <div class="step-number-icon">1</div>
-                    <h4>Escolha seu Plano</h4>
+            <div class="hw-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Escolha seu Plano</h3>
                     <p>Selecione o pacote que melhor te atende abaixo.</p>
                 </div>
-                <div class="generic-card step-item">
-                    <div class="step-number-icon">2</div>
-                    <h4>Receba no E-mail</h4>
-                    <p>Ao assinar, você receberá via e-mail o link de instalação junto com login e senha.</p>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Receba no E-mail</h3>
+                    <p>Ao assinar, você receberá via e-mail o login e senha.</p>
                 </div>
-                <div class="generic-card step-item">
-                    <div class="step-number-icon">3</div>
-                    <h4>Só Assistir</h4>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Só Assistir</h3>
                     <p>Instale o app, faça login e aproveite.</p>
                 </div>
             </div>
             
-            <div style="margin-top: 80px; text-align: center;">
+            <div style="margin-top: 50px;">
                 <a href="#planos" class="btn-cta">ASSINAR AGORA</a>
             </div>
         </div>
     </section>
 
-    <section id="planos" class="pricing">
-        <div class="container section-header center-header">
-            <h2 class="section-title">Selecione o seu <span>plano</span></h2>
-            <p class="section-subtitle">Diversão garantida pelo menor preço.</p>
-        </div>
-
+    <section id="planos" class="plans">
         <div class="container">
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div class="price-header">
-                        <h3>DezPila Mensal 1 Tela</h3>
-                        <p class="small-text">Acesso por 1 mês</p>
-                    </div>
-                    <div class="price-value">R$ 10<span>,00</span></div>
-                    <ul class="price-features">
-                        <li><i class="fas fa-check"></i> Assista em até 1 Tela</li>
-                        <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
-                        <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
-                        <li><i class="fas fa-check"></i> Canais adultos</li>
-                        <li><i class="fas fa-check"></i> Suporte diário</li>
+            <h2 class="section-title">Selecione o seu <span>Plano</span></h2>
+            <p class="section-desc">Diversão garantida pelo menor preço.</p>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Mensal 1 Tela</h3>
+                    <div class="plan-price">R$ 10<span>,00</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1 Tela</li>
+                        <li><i class="fas fa-check"></i> Qualidade 4K/FHD</li>
+                        <li><i class="fas fa-check"></i> +25.000 Conteúdos</li>
+                        <li><i class="fas fa-check"></i> Canais Adultos</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/lAsRbtaK" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/lAsRbtaK" target="_blank" class="btn-cta" style="margin-top: auto; text-align: center;">ASSINAR</a>
                 </div>
 
-                <div class="price-card featured">
-                    <div class="featured-tag">MAIS VENDIDO</div>
-                    <div class="price-header">
-                        <h3>DezPila Mensal 2 Telas</h3>
-                        <p class="small-text">Acesso por 1 mês</p>
-                    </div>
-                    <div class="price-value">R$ 19<span>,00</span></div>
-                    <ul class="price-features">
-                        <li><i class="fas fa-check"></i> Assista em até 2 Telas</li>
-                        <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
-                        <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
-                        <li><i class="fas fa-check"></i> Canais adultos</li>
-                        <li><i class="fas fa-check"></i> Suporte diário</li>
+                <div class="plan-card highlight">
+                    <h3>Mensal 2 Telas</h3>
+                    <div class="plan-price" style="color: var(--red);">R$ 19<span>,00</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 2 Telas</li>
+                        <li><i class="fas fa-check"></i> Qualidade 4K/FHD</li>
+                        <li><i class="fas fa-check"></i> +25.000 Conteúdos</li>
+                        <li><i class="fas fa-check"></i> Canais Adultos</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/cuAeAJkB" target="_blank" class="btn-cta">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/cuAeAJkB" target="_blank" class="btn-cta" style="margin-top: auto; text-align: center;">ASSINAR</a>
                 </div>
 
-                <div class="price-card">
-                    <div class="price-header">
-                        <h3>Trimestral 2 Telas</h3>
-                        <p class="small-text">Acesso por 3 meses</p>
-                    </div>
-                    <div class="price-value">R$ 50<span>,00</span></div>
-                    <ul class="price-features">
-                        <li><i class="fas fa-check"></i> Assista em até 2 Telas</li>
-                        <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
-                        <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
-                        <li><i class="fas fa-check"></i> Canais adultos</li>
-                        <li><i class="fas fa-check"></i> Suporte diário</li>
+                <div class="plan-card">
+                    <h3>Trimestral 2 Telas</h3>
+                    <div class="plan-price">R$ 50<span>,00</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 2 Telas</li>
+                        <li><i class="fas fa-check"></i> 3 Meses de Acesso</li>
+                        <li><i class="fas fa-check"></i> Qualidade 4K/FHD</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/jSBaPOOv" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/jSBaPOOv" target="_blank" class="btn-cta" style="margin-top: auto; text-align: center;">ASSINAR</a>
                 </div>
 
-                <div class="price-card">
-                    <div class="price-header">
-                        <h3>Trimestral 4 Telas</h3>
-                        <p class="small-text">Acesso por 3 meses</p>
-                    </div>
-                    <div class="price-value">R$ 90<span>,00</span></div>
-                    <ul class="price-features">
-                        <li><i class="fas fa-check"></i> Assista em até 4 Telas</li>
-                        <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
-                        <li><i class="fas fa-check"></i> + de 25.000 conteúdos</li>
-                        <li><i class="fas fa-check"></i> Canais adultos</li>
-                        <li><i class="fas fa-check"></i> Suporte diário</li>
+                <div class="plan-card">
+                    <h3>Trimestral 4 Telas</h3>
+                    <div class="plan-price">R$ 90<span>,00</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 4 Telas</li>
+                        <li><i class="fas fa-check"></i> 3 Meses de Acesso</li>
+                        <li><i class="fas fa-check"></i> Qualidade 4K/FHD</li>
                     </ul>
-                    <a href="https://pay.sunize.com.br/ImOdBvgR" target="_blank" class="btn-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.3); box-shadow: none;">ASSINAR AGORA</a>
+                    <a href="https://pay.sunize.com.br/ImOdBvgR" target="_blank" class="btn-cta" style="margin-top: auto; text-align: center;">ASSINAR</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="faq">
-        <div class="container section-header center-header">
-            <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
-        </div>
-        
-        <div class="container faq-container" style="max-width: 800px;">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Dúvidas <span>Frequentes</span></h2>
+            
             <div class="faq-item">
-                <div class="faq-question">
-                    Preciso de algum aparelho específico? <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Não! O DezPila funciona diretamente em Smart TVs, celulares (Android e iOS), computadores, tablets e TV Box. Você não precisa comprar nenhum equipamento extra.
-                </div>
+                <div class="faq-question">Preciso de algum aparelho específico? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Não! Funciona em Smart TVs, celulares, computadores e TV Box.</div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question">
-                    Como recebo meu login? <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Imediatamente após a confirmação do pagamento, nosso sistema envia automaticamente os dados de acesso para o seu e-mail cadastrado.
-                </div>
+                <div class="faq-question">Como recebo meu login? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Imediatamente após a confirmação do pagamento, por e-mail.</div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question">
-                    A plataforma trava? <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Utilizamos servidores CDN de alta velocidade que garantem estabilidade de 99,9%. Recomendamos uma internet de pelo menos 10 Mega para uma experiência perfeita.
-                </div>
+                <div class="faq-question">A plataforma trava? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Utilizamos servidores CDN de alta velocidade para garantir 99,9% de estabilidade.</div>
             </div>
         </div>
     </section>
 
-    <section class="support-section">
+    <section class="support">
         <div class="container">
-            <div class="support-card">
-                <div class="support-content">
-                    <h2>Estamos sempre aqui para ajudar</h2>
-                    <p>Ficou com alguma dúvida ou precisa de auxílio? Fale agora com nossa equipe.</p>
-                    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" class="whatsapp-btn-large">
-                        <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> ENTRE EM CONTATO PELO WHATSAPP >
-                    </a>
-                </div>
+            <div class="support-box">
+                <h2>Estamos sempre aqui para ajudar</h2>
+                <p>Entre em contato com nossa equipe de suporte:</p>
+                <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" class="btn-whatsapp-lg" target="_blank">
+                    <i class="fab fa-whatsapp"></i> FALAR NO WHATSAPP >
+                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container footer-content">
-            <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila Oficial" class="footer-logo-img">
+            <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/LOGO-PNG-1-2.png" alt="DezPila">
+            <p>DezPila, o melhor streaming desde 2023.</p>
             
-            <p class="footer-desc">DezPila, o melhor streaming desde 2023, possui alto nível de satisfação dos clientes.</p>
-
-            <div class="footer-middle-row">
-                <div class="social-group">
-                    <a href="https://www.youtube.com/@DezPilaOficial" target="_blank" class="social-btn youtube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" target="_blank" class="social-btn whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
-
-                <div class="payment-pill">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/pix.png" alt="Pix">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/VISA.png" alt="Visa">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MASTER-2.png" alt="Mastercard">
-                    <img loading="lazy" src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ELO-2.png" alt="Elo">
-                    <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" style="background:white; padding:2px; border-radius:3px; height:20px;">
-                </div>
+            <div class="social-row">
+                <a href="https://www.youtube.com/@DezPilaOficial" class="icon-btn yt" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/+5521998175348" class="icon-btn wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
 
-            <p class="copyright-text">DezPila © Todos os Direitos Reservados 2025</p>
-            <div class="voxo-credit">
-                DESENVOLVIDO POR <a href="https://wa.me/559992232474" target="_blank">VOXO ESTÚDIO</a>
+            <div class="payment-row">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/pix.png">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/VISA.png">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/MASTER-2.png">
+                <img src="https://dezpilaoficial.com/wp-content/uploads/2025/12/ELO-2.png">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg">
             </div>
+
+            <p class="copyright">DezPila © 2025 - Todos os Direitos Reservados</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/+5521998175348?text=Preciso%20de%20suporte" class="float-wa" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -763,35 +600,24 @@
         // Menu Mobile
         const menuToggle = document.querySelector('.menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
+        
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
-        });
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-                menuToggle.querySelector('i').classList.remove('fa-times');
-            });
+            const icon = menuToggle.querySelector('i');
+            if(navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+            }
         });
 
-        // FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => { 
-                    i.classList.remove('active'); 
-                    i.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
-                });
-                if (!isActive) {
-                    item.classList.add('active');
-                    item.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
-                }
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
             });
         });
     </script>
-
 </body>
 </html>
